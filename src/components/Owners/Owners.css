@@ -1,0 +1,36 @@
+.owners {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 3rem;
+  }
+
+  .owners > * {
+    flex-basis: 31%;
+    margin: 0.5rem;
+  }
+
+  
+  section.owner {
+    margin: 3rem;
+  }
+  
+  .owner {
+    background-color: var(--white);
+    border: 1px solid var(--outline);
+    border-radius: 0.5rem;
+    padding: 1rem;
+  }
+  
+  .owner-info {
+    color: var(--info);
+    font-family: "Roboto", sans-serif;
+  }
+  
+  .owner-header {
+    font-size: larger;
+    font-weight: 700;
+    line-height: 3rem;
+    color: var(--primary);
+  }
