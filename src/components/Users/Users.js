@@ -7,8 +7,8 @@ export const User = ({user}) => {
     return (
         <div className="user">
             <div>
-                <div className="user-info">Name</div>
-                <div>{user.name}</div>
+                <div className="user-info">Full Name</div>
+                <div>{user.fullName}</div>
             </div>
             <div>
                 <div className="user-info">Email</div>

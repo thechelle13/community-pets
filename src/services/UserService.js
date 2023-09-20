@@ -1,10 +1,10 @@
-export const createUser = (owner) => {
+export const createUser = (petOwner) => {
     return fetch("http://localhost:8088/petOwners", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(owner),
+      body: JSON.stringify(petOwner),
     }).then((res) => res.json())
   }
 
@@ -14,6 +14,3 @@ export const createUser = (owner) => {
     )
   }
 
-// export const getPetOwners = () => {
-//     return fetch(`http://localhost:8088/users?isStaff=true`).then( (res) => res.json())
-// }

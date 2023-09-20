@@ -4,7 +4,7 @@ import { getUserByEmail } from "../../services/UserService"
 import "./Login.css"
 
 export const Login = () => {
-    const [email, set] = useState("hpassfield7@netvibes.com")
+    const [email, set] = useState("cat@gmail.com")
     const navigate = useNavigate()
   
     const handleLogin = (e) => {
@@ -17,7 +17,7 @@ export const Login = () => {
             "pet_user",
             JSON.stringify({
               id: user.id,
-              isStaff: user.isPetOwner,
+              isPetOwner: user.isPetOwner,
             })
           )
   
@@ -32,7 +32,12 @@ export const Login = () => {
       <main className="container-login">
         <section>
           <form className="form-login" onSubmit={handleLogin}>
-            <h1>Pet Community</h1>
+          <h1>
+                <span>Welcome to
+                </span>
+                <div></div>
+                <span>Community Pets</span>
+            </h1>
             <h2>Please sign in</h2>
             <fieldset>
               <div className="form-group">

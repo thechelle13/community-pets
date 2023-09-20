@@ -4,14 +4,14 @@ import { getAllPetTypes } from "../../services/PetTypeService"
 
 
 export const Types = () => {
-    const [types, setTypes] = useState([])
+    const [ petType, setPetTypes] = useState([])
 
     useEffect( () => {
-        getAllPetTypes().then((typeArray) =>{
-            setTypes(typeArray)
+        getAllPetTypes().then((petTypeArray) =>{
+            setPetTypes(petTypeArray)
             console.log("Types Set")
         })
     }, [])
 
-    return 
+    return <petTypeList petTypeArray={petType}/>
 }

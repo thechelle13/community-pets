@@ -18,6 +18,14 @@
     border-radius: 0.5rem;
     padding: 0.5rem;
   }
+  form {
+    margin: 3rem 5rem;
+    border: 1px solid var(--outline);
+    border-radius: 10px;
+    padding: 1rem 0rem 0rem 1rem;
+    box-shadow: 1px 2px 5px lightgray;
+    background-color: var(--offWhite);
+  }
 
   /* This targets all the child elements of the element with the .ticket class */
   .pet > * {
@@ -61,3 +69,54 @@
     display: flex;
     justify-content: flex-end;
   }
+
+  /** Class for an individual <li>*/
+.pet-list-item {
+  border: none;
+  border-bottom: 1px solid hsla(0, 0%, 50%, 0.5);
+  margin: 5px 0;
+  padding: 5px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  /** Class for the joke text. Add it to a <p> element*/
+  .pet-list-item-text {
+    margin: 0;
+    font-size: 0.7rem;
+    flex-basis: 75%;
+  }
+
+  /** Classes for the action buttons. Wrap the buttons in their own div*/
+  /** The toggle class is for the buttons to mark a joke as told or untold*/
+  .pet-list-action-delete,
+  .pet-list-action-toggle {
+    border: none;
+    padding: 5px;
+    margin-left: 0.25rem;
+    background: transparent;
+    color: var(--col-4);
+  }
+
+  /** Adds styling for when the user hovers over the delete button*/
+  .pet-list-action-delete :hover {
+    color: var(--col-0);
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+  }
+
+  /** Adds styling for when the user hovers over one of the toggle buttons*/
+  .pet-list-action-toggle :hover {
+    color: var(--col-5);
+    cursor: pointer;
+    transition: all 0.1s ease-in;
+  }
+}
+
+.new {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  color: var(--primary);
+}

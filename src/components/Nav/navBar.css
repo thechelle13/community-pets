@@ -1,21 +1,29 @@
 .navbar {
     display: flex;
     flex-wrap: nowrap;
+    justify-content: center;
     background-color: var(--dark);
     margin: 0;
     width: 100%;
     padding: 0.5rem;
+    box-shadow: 1pc 3px 4px grey;
   }
 
   .navbar-item {
     flex-basis: 20%;
     list-style-type: none;
     text-align: center;
+    margin:auto;
     color: var(--offWhite);
+  }
+
+  .navbar-item:hover {
+    color: var(--primary);
   }
 
   .navbar-link {
     text-decoration: none;
+    color: black;
     font-family: "Quicksand", sans-serif;
     letter-spacing: 1px;
   }
@@ -26,4 +34,19 @@
 
   .navbar-link:hover {
     color: var(--primary);
+  }
+
+  .logo {
+    justify-self: flex-start;
+    text-decoration: none;
+    justify-self: flex-start;
+  }
+  
+  .logo__link {
+    text-decoration: none;
+  }
+  
+  .logo__img {
+    width: 12rem;
+    text-decoration: none;
   }

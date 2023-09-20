@@ -4,6 +4,7 @@ import { NavBar } from "../components/Nav/navBar"
 import { Welcome } from "../components/Welcome/Welcome"
 import { Owners } from "../components/Owners/Owners"
 import { Pets } from "../components/Pets/Pets"
+import { AddPets } from "../components/Forms/AddPets"
 
 export const ApplicationViews = () => {
 
@@ -19,25 +20,20 @@ export const ApplicationViews = () => {
     return (
 
  <Routes>
-            <Route 
-            path="/" 
-            element={
-              <>
+    <Route 
+        path="/" 
+        element={
+        <>
               <NavBar />
             
               <Outlet />
               </>
             }
             >
-              <Route index element={<Welcome/>}/>
-            <Route path="owners" element={<Owners /> }/>
-            <Route path="pets">
-              <Route index element={<Pets />} />
-              
-            </Route>
-            
-              <Route path="profile" element={<>Profile </>}/>
-            </Route>
+      <Route index element={<Welcome/>}/>
+      <Route path=":petOwners" element={<Owners /> }/>
+      <Route path="Pets" element={<Pets/>}/>
+          <Route path="AddPets" element={<AddPets/>}/>
+      </Route>
   </Routes> 
-    )
-}
+)}

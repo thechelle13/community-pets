@@ -5,7 +5,7 @@ import { createUser, getUserByEmail } from "../../services/UserService"
 export const Register = (props) => {
     const [owner, setOwner] = useState({
       email: "",
-      name: "",
+      fullName: "",
       isPetOwner: true,
     })
     let navigate = useNavigate()
@@ -46,7 +46,12 @@ export const Register = (props) => {
       return (
         <main style={{ textAlign: "center" }}>
           <form className="form-login" onSubmit={handleRegister}>
-            <h1>Pet Community</h1>
+          <h1>
+              
+                <span>Community Pets </span>
+                <div></div>
+                <span >Create Account </span>
+            </h1>
             <h2>Please Register</h2>
             <fieldset>
               <div className="form-group">
@@ -55,7 +60,7 @@ export const Register = (props) => {
                   type="text"
                   id="fullName"
                   className="form-control"
-                  placeholder="Enter your name"
+                  placeholder="Enter your First and Last name"
                   required
                   autoFocus
                 />
@@ -75,15 +80,29 @@ export const Register = (props) => {
             </fieldset>
             <fieldset>
               <div className="form-group">
+                <input
+                  onChange={updateOwners}
+                  type="text"
+                  id="city"
+                  className="form-control"
+                  placeholder="Enter your City"
+                  required
+                  autoFocus
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
                 <label>
                   <input
                     onChange={(evt) => {
                       const copy = { ...owner }
-                      copy.isStaff = evt.target.checked
+                      copy.isPetOwner = evt.target.checked
                       setOwner(copy)
                     }}
                     type="checkbox"
                     id="isPetOwner"
+                    required
                   />
                   I am an pet owner{" "}
                 </label>
