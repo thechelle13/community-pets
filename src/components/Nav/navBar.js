@@ -11,13 +11,13 @@ export const NavBar = () => {
                 <Link to="/">Welcome</Link>
             </li>
             <li className="navbar-item">
-                <Link to="/Owners">Home</Link>
+                <Link to="/Owners">My Home</Link>
             </li>
             <li className="navbar-item">
-                <Link to="/Pets">Pets</Link>
+                <Link to="/Pets">My Pets</Link>
             </li>
             <li className="navbar-item">
-                <Link to="/AddPets">Update Pets</Link>
+                <Link to="/AddPets">Add A Pet</Link>
             </li>
             {localStorage.getItem("pet_user") ? (
             <li className="navbar-item navbar-logout">

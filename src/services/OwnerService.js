@@ -1,5 +1,5 @@
 export const getAllOwners = () => {
-    return fetch(`http://localhost:8088/petOwners`).then((res) => 
+    return fetch(`http://localhost:8088/petOwners?_expand=user`).then((res) => 
     res.json())
 }
 export const getOwnersById = (id) => {

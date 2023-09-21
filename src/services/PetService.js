@@ -17,8 +17,9 @@ export const createNewPet = (pet) => {
     }).then((res) => res.json())
   }
 
-  export const petEdit = (editPet) => {
-    return fetch(`http://localhost:8088/pets`, {
+
+  export const petEdit = (petId,editPet) => {
+    return fetch(`http://localhost:8088/pets/${petId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -28,20 +29,6 @@ export const createNewPet = (pet) => {
   }
 
 
-//   export const petEdit = async(petEdited) => {
- 
-//     const res = await fetch (`http://localhost:8088/pets/${petEdited}`
-//        ,{
-//        method: "PUT",
-//        headers: {
-//                "Content-Type": "application/json"
-//        },
-//        body: JSON.stringify(petEdited)
-//    })
-//    const editPet = await res.json()
-//    return editPet
-// }
-
   export const petDelete =  () => {
     return fetch (`http://localhost:8088/pets`, {
       method: "DELETE",
@@ -49,14 +36,5 @@ export const createNewPet = (pet) => {
     
   }
 
-// export const petDelete = async(petDeleted) => {
 
-//     const res = await fetch (`http://localhost:8088/pets/${petDeleted}`
-//    ,{
-//        method: "DELETE",
-  
-//    })
-//    const deletePet = await res.json()
-//    return deletePet
-// }
 

@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react"
 import {  getAllPets} from "../../services/PetService"
 import "./Pets.css"
+import { useParams } from "react-router-dom"
+
 
 export const Pets = () => {
     const [allPets, setAllPets] = useState([])
-    const [newPet, setNewPet] = useState([])
+    
+    const {ownerId} = useParams()
     
 
     useEffect( () => {
@@ -13,17 +16,6 @@ export const Pets = () => {
             console.log("Pets Set")
         })
     }, [])
-
-    useEffect( () => {
-        setNewPet("")
-    }, [allPets])
-
-    // useEffect(() => {
-    //     const foundPets = allPets.filter((pet) =>
-    //       pet.description.toLowerCase().includes(searchTerm.toLowerCase())
-    //     )
-    //     setFilteredPets(foundPets)
-    //   }, [searchTerm, allPets])
 
     return (
         <div className="welcome-container">
@@ -36,18 +28,27 @@ export const Pets = () => {
             <article className="form">
 
         <section className="pet">
+            
+        
+
             <h2>My Pets</h2>
+            {allPets.map((pet) => {
+        return (
+          <div key={pet.id}>{pet.id}
+            </div>
+        )
+      })}
+            {/* {allPets.filter((pet) => pet.petOwnerId === ownerId) 
+            .map((pet) => (
+            <div key={pet.id}>{pet.id}</div>
+            ))} */}
         
             <div className="pet">
-            <header className="pet-info">Pet Name:{allPets.name}</header>   
-                    <div className="pet-info">Pet Type:{allPets.name}</div>
+            <header className="pet-info">Pet Name: </header>   
+                    <div className="pet-info">Pet Type:</div>
                     
                     <div className="pet-info">Pet Description:</div>
-                {/* <footer>
                 
-                <div className="pet-info">Image:</div>
-                
-            </footer> */}
         </div>   
     </section>
     </article>

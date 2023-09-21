@@ -9,14 +9,8 @@ export const Owners = () => {
 
     const [owners, setOwners] = useState([])
     const {ownerId} =useParams()
+   
 
-  //   useEffect(() => {
-  //   getAllOwners().then((ownerArray) => {
-  //       setOwners(ownerArray)
-  //       console.log("Owners Set")
-  //   })
-    
-  // }, [])
 
   useEffect(() => {
     getOwnersById(ownerId).then((ownerObj) => {
@@ -26,6 +20,11 @@ export const Owners = () => {
 
   return (
     <div className="welcome-container">
+      
+      {/* {pet.filter((owner) => pet.petOwnerId === petOwner.id) 
+            .map((owner) => (
+            <div key={owner.id}>{owner.name}</div>
+            ))} */}
         <section className="pet">
         <h1 className="new">
                 
@@ -35,7 +34,12 @@ export const Owners = () => {
         <article className="owner">
         <h2>My Details:</h2>
         <section className="owner">
-            
+        {owners.map((owner) => {
+        return (
+          <div key={owner.id}>{owner.id}
+            </div>
+        )
+      })}
             <div className="owner-info"> Name:</div>
             <div className="owner-info"> Email:</div>
             <div className="owner-info"> City:</div>

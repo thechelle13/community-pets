@@ -33,7 +33,7 @@ export const ApplicationViews = () => {
       <Route index element={<Welcome/>}/>
       <Route path=":petOwners" element={<Owners /> }/>
       <Route path="Pets" element={<Pets/>}/>
-          <Route path="AddPets" element={<AddPets/>}/>
+      <Route path="AddPets" element={<AddPets/>}/>
       </Route>
   </Routes> 
 )}

@@ -14,10 +14,11 @@ export const User = ({user}) => {
                 <div className="user-info">Email</div>
                 <div>{user.email}</div>
             </div>
+            {/* <div>
+                <div className="user-info">City</div>
+                <div>{user.city}</div>
+            </div> */}
             
-
-
-
         </div>
     )
 }

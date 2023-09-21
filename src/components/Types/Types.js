@@ -13,5 +13,5 @@ export const Types = () => {
         })
     }, [])
 
-    return <petTypeList petTypeArray={petType}/>
+    return <Types petTypeArray={petType}/>
 }

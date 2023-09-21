@@ -1,10 +1,10 @@
-export const createUser = (petOwner) => {
+export const createUser = (petOwnerId) => {
     return fetch("http://localhost:8088/petOwners", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(petOwner),
+      body: JSON.stringify(petOwnerId),
     }).then((res) => res.json())
   }
 
@@ -14,3 +14,8 @@ export const createUser = (petOwner) => {
     )
   }
 
+  export const getUserByPetOwnerId = (petOwnerId) => {
+    return fetch(`http://localhost:8088/petOwners?petOwnerId=${petOwnerId}`).then((res) =>
+      res.json()
+    )
+  }

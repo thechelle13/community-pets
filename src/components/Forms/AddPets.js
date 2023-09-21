@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
-import { getPetsById, petDelete, petEdit } from "../../services/PetService"
+import { createNewPet, getPetsById, petDelete, petEdit } from "../../services/PetService"
 import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
-import { Types } from "../Types/Types"
-import { Navigate, useParams } from "react-router-dom"
+
+import { useNavigate, useParams } from "react-router-dom"
 
 export const AddPets = () => {
     const [type, setType] = useState([])
@@ -15,6 +15,13 @@ export const AddPets = () => {
         petType: "",
         description: ""
     })
+    const Navigate = useNavigate()
+
+    // useEffect(() => {
+    //     createNewPet().then((newPetObj) => {
+    //         setNewPet(newPetObj)
+    //     })
+    // }, [])
 
     useEffect(() => {
         getAllPetTypes().then((typeArray)=>{
@@ -25,47 +32,31 @@ export const AddPets = () => {
 
     useEffect(() => {
         getPetsById(petId).then((petObj) => {
-          setPet(petObj)
+        setPet(petObj)
         })
-      }, [petId])
+    }, [petId])
 
-      const handleInputChange = (event) => {
-        const petCopy = { ...newPet }
-        petCopy[event.target.name] = event.target.value
-        setNewPet(petCopy)
-      }
-    
+    const handleInputChange = (evt) => {
+        const copy = { ...newPet }
+        copy[evt.target.id] = evt.target.value
+        setNewPet(copy)
+    }
+
     const handleSave = (event) => {
         event.preventDefault()
 
         const updatedPet = {
-            id: pet.id,
-            name: pet.name,
-            petOwnerId: pet.petOwnerId,
-            description: pet.description,
-            petTypeId: pet.petTypeId,
-          }
-      
-          petEdit(updatedPet).then(() => {
-            Navigate(`./Pets`)
-          })
-    }
-
-    const handleDelete = (event) => {
-        event.preventDefault()
-
-        const delPet = {
-            id: pet.id,
-            name: pet.name,
-            imageUrl: pet.imageUrl,
-            description: pet.description,
-            petTypeId: pet.petTypeId,
-          }
-      
-          petDelete(delPet).then(() => {
+            id: newPet.id,
+            name: newPet.name,
+            petOwnerId: parseInt(newPet.petOwnerId),
+            description: newPet.description,
+            petTypeId: parseInt(newPet.petType)
+        }
+        createNewPet(updatedPet).then(() => {
             Navigate(`/Pets`)
-          })
+        })
     }
+
 
     return (
         <div className="welcome-container">
@@ -78,7 +69,7 @@ export const AddPets = () => {
             <h2>Pet Update:</h2>
             <fieldset>
             <div className="form-group">
-            <label htmlFor="name">Name:</label>
+            <label htmlFor="name" >Name:</label>
                 <input
                 type="text"
                 id="name"
@@ -89,14 +80,13 @@ export const AddPets = () => {
                 autoFocus
                 />
             </div>
-            </fieldset>
-            
+            </fieldset>        
             <fieldset>
             <div className="form-group">
             <label htmlFor="description">Description:</label>
                 <input
                 type="text"
-                id="fullName"
+                id="description"
                 className="form-control"
                 placeholder="Description of your pet."
                 onChange={handleInputChange}
@@ -108,28 +98,29 @@ export const AddPets = () => {
             <fieldset>
             <div> Pet Type:</div>
             <select
-            name="petTypeId"
-            value={Types.petTypeId}
-            required
+            name="petType"
+            value={newPet.petType}         
             onChange={(event) => {
-              const typeCopy = { ...type }
-              typeCopy.petTypeId = parseInt(event.target.value)
-              setType(typeCopy)
+            const petCopy = { ...newPet }
+            petCopy.petType = parseInt(event.target.value)
+            setNewPet(petCopy)
             }}
-          >
-            <option value={0}>Please select type of pet</option>
+            required
+            autoFocus
+            >
+            <option value="">Please select type of pet</option>
             {type.map((typeObj) => {
-              return (
+            return (
                 <option key={typeObj.id} value={typeObj.id}>
-                  {typeObj.name}
+                {typeObj.type}
                 </option>
-              )
+            )
             })}
-          </select>
+        </select>
             </fieldset>
             <section>
-            <button className="form-btn" onClick={handleSave}>Update</button>
-            <button className="form-btn" onClick={handleDelete} >Delete Pet?</button>
+            <button className="form-btn" type="submit" onClick={handleSave}>Add Pet</button>
+           
             </section>     
         </form>
         </div>
