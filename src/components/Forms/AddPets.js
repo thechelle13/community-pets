@@ -1,27 +1,18 @@
 import { useEffect, useState } from "react"
-import { createNewPet, getPetsById, petDelete, petEdit } from "../../services/PetService"
+import { createNewPet} from "../../services/PetService"
 import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
-
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 
 export const AddPets = () => {
     const [type, setType] = useState([])
-    const [ pet, setPet] = useState([])
-    const {petId} = useParams()
     const [newPet, setNewPet] = useState({
         name:"", 
         petOwnerId: 0, 
-        petType: "",
+        petTypeId: 0,
         description: ""
     })
     const Navigate = useNavigate()
-
-    // useEffect(() => {
-    //     createNewPet().then((newPetObj) => {
-    //         setNewPet(newPetObj)
-    //     })
-    // }, [])
 
     useEffect(() => {
         getAllPetTypes().then((typeArray)=>{
@@ -29,12 +20,6 @@ export const AddPets = () => {
             console.log("Type set.")
         })
     }, [])
-
-    useEffect(() => {
-        getPetsById(petId).then((petObj) => {
-        setPet(petObj)
-        })
-    }, [petId])
 
     const handleInputChange = (evt) => {
         const copy = { ...newPet }
@@ -56,7 +41,6 @@ export const AddPets = () => {
             Navigate(`/Pets`)
         })
     }
-
 
     return (
         <div className="welcome-container">
@@ -108,7 +92,7 @@ export const AddPets = () => {
             required
             autoFocus
             >
-            <option value="">Please select type of pet</option>
+            <option value="petType">Please select type of pet</option>
             {type.map((typeObj) => {
             return (
                 <option key={typeObj.id} value={typeObj.id}>
@@ -120,7 +104,6 @@ export const AddPets = () => {
             </fieldset>
             <section>
             <button className="form-btn" type="submit" onClick={handleSave}>Add Pet</button>
-           
             </section>     
         </form>
         </div>

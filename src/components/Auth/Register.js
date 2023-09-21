@@ -17,7 +17,7 @@ export const Register = (props) => {
               "pet_user",
               JSON.stringify({
                 id: createdUser.id,
-                staff: createdUser.isPetOwner,
+                isPetOwner: createdUser.isPetOwner,
               })
             )
     

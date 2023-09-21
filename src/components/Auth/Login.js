@@ -20,7 +20,6 @@ export const Login = () => {
               isPetOwner: user.isPetOwner,
             })
           )
-  
           navigate("/")
         } else {
           window.alert("Invalid login")

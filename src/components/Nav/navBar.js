@@ -19,6 +19,7 @@ export const NavBar = () => {
             <li className="navbar-item">
                 <Link to="/AddPets">Add A Pet</Link>
             </li>
+            
             {localStorage.getItem("pet_user") ? (
             <li className="navbar-item navbar-logout">
                 <Link

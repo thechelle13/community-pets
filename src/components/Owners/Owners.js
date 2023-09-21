@@ -3,20 +3,16 @@ import { getOwnersById } from "../../services/OwnerService"
 import "./Owners.css"
 import { useParams } from "react-router-dom"
 
-
-
 export const Owners = () => {
 
     const [owners, setOwners] = useState([])
-    const {ownerId} =useParams()
-   
-
+    const {petOwnerId} =useParams()
 
   useEffect(() => {
-    getOwnersById(ownerId).then((ownerObj) => {
+    getOwnersById(petOwnerId).then((ownerObj) => {
       setOwners(ownerObj)
     })
-  }, [ownerId])
+  }, [petOwnerId])
 
   return (
     <div className="welcome-container">
@@ -34,25 +30,19 @@ export const Owners = () => {
         <article className="owner">
         <h2>My Details:</h2>
         <section className="owner">
+
         {owners.map((owner) => {
         return (
-          <div key={owner.id}>{owner.id}
+          <div className="owner" key={owner.id}>{owner.id}
             </div>
         )
       })}
+
             <div className="owner-info"> Name:</div>
             <div className="owner-info"> Email:</div>
             <div className="owner-info"> City:</div>
-            </section>
-            {/* <button className="btn">Update</button>
-            <button className="btn">Delete</button> */}
-            </article>
-        
-            
-        
-            
-        
-        
+          </section>
+        </article>
     </div>
     )
 }

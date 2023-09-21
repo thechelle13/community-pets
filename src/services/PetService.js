@@ -7,16 +7,15 @@ export const getPetsById = (petId) => {
     return fetch(`http://localhost:8088/pets?petId=${petId}`).then((res) => res.json()
     )
 }
-export const createNewPet = (pet) => {
+export const createNewPet = (petOwnerId) => {
     return fetch(`http://localhost:8088/pets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(pet),
+      body: JSON.stringify(petOwnerId),
     }).then((res) => res.json())
   }
-
 
   export const petEdit = (petId,editPet) => {
     return fetch(`http://localhost:8088/pets/${petId}`, {
@@ -27,7 +26,6 @@ export const createNewPet = (pet) => {
       body: JSON.stringify(editPet),
     }).then((res) => res.json())
   }
-
 
   export const petDelete =  () => {
     return fetch (`http://localhost:8088/pets`, {
