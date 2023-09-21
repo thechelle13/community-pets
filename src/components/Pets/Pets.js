@@ -1,14 +1,23 @@
 import { useEffect, useState } from "react"
 import { getAllPets} from "../../services/PetService"
 import "./Pets.css"
+import { getAllPetTypes } from "../../services/PetTypeService"
 
 export const Pets = () => {
     const [allPets, setAllPets] = useState([])
+    const [type, setType] = useState([])
     
     useEffect( () => {
         getAllPets().then((petArray) =>{
             setAllPets(petArray)
             console.log("Pets Set")
+        })
+    }, [])
+
+    useEffect(() => {
+        getAllPetTypes().then((typeArray)=>{
+            setType(typeArray)
+            console.log("Type set.")
         })
     }, [])
 
@@ -44,7 +53,17 @@ export const Pets = () => {
             
             {allPets.map((pet) => {
         return (
-        <div className="pet" key={pet.id}>{pet.id}
+        <div className="pet" key={pet.id}>
+            <div>Pet # {pet.id}</div> 
+            <div>Name: {pet.name}</div>
+            <div>I am a "{type.map((typeObj) => {
+            return (
+                <div key={typeObj.id} value={typeObj.id}>
+                {typeObj.type}
+                </div>
+            )
+            })}"</div>
+            <div>Description: {pet.description}</div>
        <button className="form-btn" type="submit" 
     //    onClick={handleSave}
        >Update</button>
@@ -59,13 +78,6 @@ export const Pets = () => {
             .map((pet) => (
             <div key={pet.id}>{pet.id}</div>
             ))} */}
-        
-            <div className="pet">
-            <header className="pet-info">Pet Name: </header>   
-                <div className="pet-info">Pet Type:</div>
-                <div className="pet-info">Pet Description:</div>
-                
-        </div>   
     </section>
     </article>
     </div>

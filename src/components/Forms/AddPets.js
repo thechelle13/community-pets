@@ -83,10 +83,10 @@ export const AddPets = () => {
             <div> Pet Type:</div>
             <select
             name="petType"
-            value={newPet.petType}         
+            value={newPet.petTypeId}         
             onChange={(event) => {
             const petCopy = { ...newPet }
-            petCopy.petType = parseInt(event.target.value)
+            petCopy.petTypeId = parseInt(event.target.value)
             setNewPet(petCopy)
             }}
             required

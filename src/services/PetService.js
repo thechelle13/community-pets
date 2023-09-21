@@ -17,7 +17,7 @@ export const createNewPet = (petOwnerId) => {
     }).then((res) => res.json())
   }
 
-  export const petEdit = (petId,editPet) => {
+  export const petEdited = (petId,editPet) => {
     return fetch(`http://localhost:8088/pets/${petId}`, {
       method: "PUT",
       headers: {

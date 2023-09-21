@@ -11,6 +11,7 @@ export const Owners = () => {
   useEffect(() => {
     getOwnersById(petOwnerId).then((ownerObj) => {
       setOwners(ownerObj)
+      console.log("Owners Set")
     })
   }, [petOwnerId])
 
@@ -33,14 +34,23 @@ export const Owners = () => {
 
         {owners.map((owner) => {
         return (
-          <div className="owner" key={owner.id}>{owner.id}
+          <div className="owner" key={owner.id}>
+          <div key={owner.id}>ID # {owner.id}</div> 
+            <div>Name: {owner.fullName}</div>
+            <div>City: {owner.city}</div>
+            <div>Email: {owner.email}</div>
+            <button className="form-btn" type="submit" 
+    //    onClick={handleSave}
+       >Update</button>
+       <button className="form-btn" type="submit" 
+    //    onClick={handleDelete}
+       >Delete</button>
             </div>
+            
         )
       })}
 
-            <div className="owner-info"> Name:</div>
-            <div className="owner-info"> Email:</div>
-            <div className="owner-info"> City:</div>
+            
           </section>
         </article>
     </div>
