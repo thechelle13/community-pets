@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-
 import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
@@ -36,7 +35,7 @@ export const EditPet = () => {
             name: editPet.name,
             petOwnerId: parseInt(editPet.petOwnerId),
             description: editPet.description,
-            petTypeId: parseInt(editPet.petType)
+            petTypeId: parseInt(editPet.petTypeId)
         }
         petEdited(updatedPet).then(() => {
             Navigate(`/Pets`)
@@ -93,7 +92,7 @@ export const EditPet = () => {
             required
             autoFocus
             >
-            <option value="petType">Please select type of pet</option>
+            <option value="petTypeId">Please select pet type</option>
             {type.map((typeObj) => {
             return (
                 <option key={typeObj.id} value={typeObj.id}>
@@ -104,28 +103,9 @@ export const EditPet = () => {
         </select>
             </fieldset>
             <section>
-            <button className="form-btn" type="submit" onClick={handleSave}>Add Pet</button>
+            <button className="form-btn" type="submit" onClick={handleSave}>Edit Pet</button>
             </section>     
         </form>
         </div>
     )
 }
-
- // const handleDelete = (event) => {
-    //     event.preventDefault()
-
-    //     const delPet = {
-    //         id: pet.id,
-    //         name: pet.name,
-    //         petOwnerId: pet.petOwnerId,
-    //         description: pet.description,
-    //         petTypeId: pet.petTypeId,
-    //     }
-    //     petDelete(delPet).then(() => {
-    //         Navigate(`./Pets`)
-    //     })
-    // }</fieldset>
-    // <section>
-    // <button className="form-btn" type="submit" onClick={handleSave}>Edit A Pet</button>
-    // <button className="form-btn" onClick={handleDelete} >Delete A Pet?</button>
-    // </section>  

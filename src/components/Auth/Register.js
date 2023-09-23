@@ -8,6 +8,7 @@ export const Register = (props) => {
       fullName: "",
       isPetOwner: true,
     })
+    
     let navigate = useNavigate()
 
     const registerNewUser = () => {
@@ -18,13 +19,14 @@ export const Register = (props) => {
               JSON.stringify({
                 id: createdUser.id,
                 isPetOwner: createdUser.isPetOwner,
+                email: createdUser.email
               })
             )
-    
             navigate("/")
           }
         })
       }
+
       const handleRegister = (e) => {
         e.preventDefault()
         getUserByEmail(owner.email).then((response) => {
@@ -37,6 +39,7 @@ export const Register = (props) => {
           }
         })
       }
+
       const updateOwners = (evt) => {
         const copy = { ...owner }
         copy[evt.target.id] = evt.target.value

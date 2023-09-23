@@ -9,7 +9,7 @@ export const Welcome = ()=> {
                 <span>Community Pets</span>
             </h1>
             <div className="about">About:</div>
-            <div className="about">A fun place to see community pets.</div>
+            <div className="about">A site to list your pets.</div>
             <div>
             <div className="about">Coming Soon...</div>
             <div className="about">An exchange pet service Board for fellow pet owners in your community.</div>

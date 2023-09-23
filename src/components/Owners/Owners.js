@@ -1,27 +1,48 @@
 import { useEffect, useState } from "react"
-import { getOwnersById } from "../../services/OwnerService"
+import { getAllOwners, getOwnersById} from "../../services/OwnerService"
 import "./Owners.css"
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams} from "react-router-dom"
 
-export const Owners = () => {
-
+export const Owners = ({currentUser}) => {
+ 
     const [owners, setOwners] = useState([])
-    const {petOwnerId} =useParams()
+   // const [owner, setSingleOwner] =useState([])
+    // const {ownerId} =useParams()
+
+    const Navigate = useNavigate()
 
   useEffect(() => {
-    getOwnersById(petOwnerId).then((ownerObj) => {
+    getAllOwners().then((ownerObj) => {
       setOwners(ownerObj)
-      console.log("Owners Set")
+      console.log("Owners Set", ownerObj)
     })
-  }, [petOwnerId])
+  }, [])
+  
+//   useEffect(()=> {
+//     getOwnersById(ownerId).then((data) => {
+//         const singleOwner = data[0]
+//         if(singleOwner) {
+//             setSingleOwner(singleOwner)
+//             console.log("Owner Set", data)
+//         }
+//     }
+//     )
+// }, [ownerId])
+
+  const handleSave = (event) => {
+    event.preventDefault()
+        Navigate(`/`)
+}
+
+const handleDelete = (event) => {
+    event.preventDefault()
+    Navigate(`/`)
+}
 
   return (
     <div className="welcome-container">
       
-      {/* {pet.filter((owner) => pet.petOwnerId === petOwner.id) 
-            .map((owner) => (
-            <div key={owner.id}>{owner.name}</div>
-            ))} */}
+
         <section className="pet">
         <h1 className="new">
                 
@@ -30,29 +51,53 @@ export const Owners = () => {
             </section>
         <article className="owner">
         <h2>My Details:</h2>
-        <section className="owner">
-
-        {owners.map((owner) => {
+        
+        
+         {owners.map((owner) => {
         return (
-          <div className="owner" key={owner.id}>
-          <div key={owner.id}>ID # {owner.id}</div> 
-            <div>Name: {owner.fullName}</div>
+          <div className="owner" key={owner.id} >
+          <div key={owner.id}>ID # {currentUser.id}</div> 
+            <div key={owner.id}>Name: {owner.fullName}</div>
             <div>City: {owner.city}</div>
             <div>Email: {owner.email}</div>
             <button className="form-btn" type="submit" 
-    //    onClick={handleSave}
+        onClick={handleSave}
        >Update</button>
        <button className="form-btn" type="submit" 
-    //    onClick={handleDelete}
+       onClick={handleDelete}
        >Delete</button>
             </div>
             
         )
-      })}
-
-            
-          </section>
+      })}          
+     
         </article>
     </div>
     )
-}
+} 
+
+// {owner && (
+//   <div className="owner" key={owner.id}>
+//       <div>ID # {owner.id}</div> 
+//       <div>Name: {owner.fullName}</div>
+//       <div>City: {owner.city}</div>
+//       <div>Email: {owner.email}</div>
+//       <button className="form-btn" type="submit" onClick={handleSave}>Update</button>
+//       <button className="form-btn" type="submit" onClick={handleDelete}>Delete</button>
+//   </div>
+// )}
+
+// </article>
+// </div>
+// )
+// }
+
+
+
+
+
+
+
+ 
+
+

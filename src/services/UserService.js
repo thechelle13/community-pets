@@ -1,5 +1,5 @@
 export const createUser = (petOwnerId) => {
-    return fetch("http://localhost:8088/petOwners", {
+    return fetch("http://localhost:8088/petOwners?_expand=user", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,8 +14,8 @@ export const createUser = (petOwnerId) => {
     )
   }
 
-  export const getUserByPetOwnerId = (petOwnerId) => {
-    return fetch(`http://localhost:8088/petOwners?petOwnerId=${petOwnerId}`).then((res) =>
+  export const getUserById = (id) => {
+    return fetch(`http://localhost:8088/petOwners?petOwnerId=${id}`).then((res) =>
       res.json()
     )
   }

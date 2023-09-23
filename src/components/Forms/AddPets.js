@@ -5,6 +5,7 @@ import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
 
 export const AddPets = () => {
+
     const [type, setType] = useState([])
     const [newPet, setNewPet] = useState({
         name:"", 
@@ -41,6 +42,7 @@ export const AddPets = () => {
             Navigate(`/Pets`)
         })
     }
+    
 
     return (
         <div className="welcome-container">
@@ -80,13 +82,13 @@ export const AddPets = () => {
             </div>
             </fieldset>
             <fieldset>
-            <div> Pet Type:</div>
+            <div htmlFor="petType"> Pet Type:</div>
             <select
             name="petType"
-            value={newPet.petTypeId}         
+            value={newPet.petType}         
             onChange={(event) => {
             const petCopy = { ...newPet }
-            petCopy.petTypeId = parseInt(event.target.value)
+            petCopy.petType = parseInt(event.target.value)
             setNewPet(petCopy)
             }}
             required

@@ -5,6 +5,8 @@ import { Welcome } from "../components/Welcome/Welcome"
 import { Owners } from "../components/Owners/Owners"
 import { Pets } from "../components/Pets/Pets"
 import { AddPets } from "../components/Forms/AddPets"
+import { EditPet } from "../components/Forms/EditPets"
+import { DeletePet } from "../components/Forms/DeletePet"
 
 export const ApplicationViews = () => {
 
@@ -31,8 +33,16 @@ export const ApplicationViews = () => {
             }
             >
       <Route index element={<Welcome/>}/>
-      <Route path=":petOwners" element={<Owners /> }/>
-      <Route path="Pets" element={<Pets/>}/>
+      <Route path=":petOwners" element={<Owners currentUser={currentUser}/> }/>
+      {/* <Route path="EditPetOwner" 
+      element={<EditPetOwner/>}
+      />
+        <Route path="DeletePetOwner" 
+        element={<DeletePetOwner/>}
+        /> */}
+      <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
+        <Route path="EditPets" element={<EditPet/>}/>
+        <Route path="DeletePet" element={<DeletePet/>}/>
       <Route path="AddPets" element={<AddPets/>}/>
       </Route>
   </Routes> 
