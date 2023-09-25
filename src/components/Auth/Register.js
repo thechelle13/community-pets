@@ -94,6 +94,33 @@ export const Register = (props) => {
                 />
               </div>
             </fieldset>
+
+            {/* <fieldset>
+              <div className="form-group">
+                <input
+                  onChange={updateOwners}
+                  type="text"
+                  id="city"
+                  className="form-control"
+                  placeholder="Enter your Pet's name"
+                  required
+                  autoFocus
+                />
+              </div>
+            </fieldset>
+            <fieldset>
+              <div className="form-group">
+                <input
+                  onChange={updateOwners}
+                  type="text"
+                  id="city"
+                  className="form-control"
+                  placeholder="Select your Pet's type"
+                  required
+                  autoFocus
+                />
+              </div>
+            </fieldset> */}
             <fieldset>
               <div className="form-group">
                 <label>

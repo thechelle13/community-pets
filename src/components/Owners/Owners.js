@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
-import { getAllOwners, getOwnersById} from "../../services/OwnerService"
+import { getAllOwners} from "../../services/OwnerService"
 import "./Owners.css"
-import { useNavigate, useParams} from "react-router-dom"
+import { useNavigate} from "react-router-dom"
 
 export const Owners = ({currentUser}) => {
  
@@ -29,6 +29,7 @@ export const Owners = ({currentUser}) => {
 //     )
 // }, [ownerId])
 
+// stretch goal buttons 
   const handleSave = (event) => {
     event.preventDefault()
         Navigate(`/`)
@@ -57,9 +58,10 @@ const handleDelete = (event) => {
         return (
           <div className="owner" key={owner.id} >
           <div key={owner.id}>ID # {currentUser.id}</div> 
-            <div key={owner.id}>Name: {owner.fullName}</div>
+            <div >Name: {owner.fullName}</div>
             <div>City: {owner.city}</div>
             <div>Email: {owner.email}</div>
+            
             <button className="form-btn" type="submit" 
         onClick={handleSave}
        >Update</button>

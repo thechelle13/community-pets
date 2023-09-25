@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react"
-import { getAllPets, getPetByPetOwnerId,} from "../../services/PetService"
+import { getAllPets} from "../../services/PetService"
 import "./Pets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate, useParams } from "react-router-dom"
 import { getAllOwners } from "../../services/OwnerService"
-import { getUserByEmail, getUserById } from "../../services/UserService"
+import { getUserById } from "../../services/UserService"
 
 
 export const Pets = ({currentUser}) => {

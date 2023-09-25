@@ -21,6 +21,7 @@ export const EditPet = () => {
         })
     }, [])
 
+    // investigate this
     const handleInputChange = (evt) => {
         const copy = { ...editPet }
         copy[evt.target.id] = evt.target.value
@@ -51,7 +52,7 @@ export const EditPet = () => {
             </section>
         <form className="form">
             <h2>Pet Update:</h2>
-            <fieldset>
+            {/* <fieldset>
             <div className="form-group">
             <label htmlFor="name" >Name:</label>
                 <input
@@ -101,7 +102,7 @@ export const EditPet = () => {
             )
             })}
         </select>
-            </fieldset>
+            </fieldset> */}
             <section>
             <button className="form-btn" type="submit" onClick={handleSave}>Edit Pet</button>
             </section>     
