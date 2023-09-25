@@ -18,6 +18,7 @@ export const Login = () => {
             JSON.stringify({
               id: user.id,
               isPetOwner: user.isPetOwner,
+              
             })
           )
           navigate("/")

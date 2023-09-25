@@ -34,16 +34,11 @@ export const ApplicationViews = () => {
             >
       <Route index element={<Welcome/>}/>
       <Route path=":petOwners" element={<Owners currentUser={currentUser}/> }/>
-      {/* <Route path="EditPetOwner" 
-      element={<EditPetOwner/>}
-      />
-        <Route path="DeletePetOwner" 
-        element={<DeletePetOwner/>}
-        /> */}
+     
       <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
         <Route path="EditPets" element={<EditPet/>}/>
         <Route path="DeletePet" element={<DeletePet/>}/>
-      <Route path="AddPets" element={<AddPets/>}/>
+        <Route path="AddPets" element={<AddPets/>}/>
       </Route>
   </Routes> 
 )}

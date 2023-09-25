@@ -14,6 +14,8 @@ export const EditPet = () => {
     })
     const Navigate = useNavigate()
 
+// use effect for setEditpet? 
+
     useEffect(() => {
         getAllPetTypes().then((typeArray)=>{
             setType(typeArray)

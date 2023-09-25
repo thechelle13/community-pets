@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
-import { getAllOwners} from "../../services/OwnerService"
+import { getAllOwners, getOwnersById} from "../../services/OwnerService"
 import "./Owners.css"
-import { useNavigate} from "react-router-dom"
+import { useNavigate, useParams} from "react-router-dom"
 
 export const Owners = ({currentUser}) => {
  
     const [owners, setOwners] = useState([])
-   // const [owner, setSingleOwner] =useState([])
-    // const {ownerId} =useParams()
+    const [owner, setSingleOwner] =useState([])
+    const {ownerId} =useParams()
 
     const Navigate = useNavigate()
 
@@ -18,16 +18,16 @@ export const Owners = ({currentUser}) => {
     })
   }, [])
   
-//   useEffect(()=> {
-//     getOwnersById(ownerId).then((data) => {
-//         const singleOwner = data[0]
-//         if(singleOwner) {
-//             setSingleOwner(singleOwner)
-//             console.log("Owner Set", data)
-//         }
-//     }
-//     )
-// }, [ownerId])
+  useEffect(()=> {
+    getOwnersById(ownerId).then((data) => {
+        const singleOwner = data[0]
+        if(singleOwner) {
+            setSingleOwner(singleOwner)
+            console.log("Owner Set", data)
+        }
+    }
+    )
+}, [ownerId])
 
 // stretch goal buttons 
   const handleSave = (event) => {

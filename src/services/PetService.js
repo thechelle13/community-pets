@@ -1,19 +1,24 @@
+
+// working 
 export const getAllPets =  () => {
     return fetch(`http://localhost:8088/pets`).then((res) => res.json()
     )
 }
 
-export const getPetsById = (petId) => {
-    return fetch(`http://localhost:8088/pets?petId=${petId}`).then((res) => res.json()
+//working
+export const getPetsById = () => {
+    return fetch(`http://localhost:8088/pets?_expand=petOwnerId`).then((res) => res.json()
     )
 }
 
-export const getPetByPetOwnerId = (petOwnerId) => {
-  return fetch(`http://localhost:8088/pets?petOwnerId=${petOwnerId}`).then((res) =>
-    res.json()
-  )
-}
 
+// export const getPetByPetOwnerId = (petOwnerId) => {
+//   return fetch(`http://localhost:8088/pets?_expand=petOwnerId=${petOwnerId}`).then((res) =>
+//     res.json()
+//   )
+// }
+
+// working
 export const createNewPet = (newPet) => {
     return fetch(`http://localhost:8088/pets`, {
       method: "POST",
@@ -24,8 +29,10 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
+
+  // fetch not found 
   export const petEdited = (editPet) => {
-    return fetch(`http://localhost:8088/pets${editPet.id}`, {
+    return fetch(`http://localhost:8088/pets/${editPet.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -34,6 +41,7 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
+  // not done
   export const petDelete =  () => {
     return fetch (`http://localhost:8088/pets`, {
       method: "DELETE",

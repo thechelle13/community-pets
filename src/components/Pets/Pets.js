@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { getAllPets} from "../../services/PetService"
+import { getAllPets, getPetsById} from "../../services/PetService"
 import "./Pets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate, useParams } from "react-router-dom"
@@ -9,11 +9,13 @@ import { getUserById } from "../../services/UserService"
 
 export const Pets = ({currentUser}) => {
     const [allPets, setAllPets] = useState([])
+    const [singlePet, setSinglePet] =useState([])
     const [owner, setOwner] =useState([])
     const [owners, setOwners] = useState([])
     const [type, setType] = useState([])
     
     const {ownerId} = useParams()
+    const {petId} = useParams()
    
     const Navigate = useNavigate()
     
@@ -47,6 +49,16 @@ export const Pets = ({currentUser}) => {
         }
         )
     }, [ownerId])
+
+    useEffect(()=> {
+        getPetsById(petId).then((data) => {
+            const singlePet = data[0]
+            if(singlePet) {
+                setSinglePet(singlePet)
+            }
+        }
+        )
+    }, [petId])
     
     const handleSave = (event) => {
         event.preventDefault()
@@ -74,7 +86,7 @@ export const Pets = ({currentUser}) => {
          return (
          <div className="pet" key={pet.id}>
              <div key={owner.id}>Owner ID # {currentUser.id}</div>
-             <div >Pet # {pet.id}</div> 
+             <div key={currentUser.id}>Pet # {pet.id}</div> 
              <div>Name: {pet.name}</div>
              <div>I am a "{type.map((typeObj) => {
              return (
