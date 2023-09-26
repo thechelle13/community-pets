@@ -1,30 +1,38 @@
 import { useEffect, useState } from "react"
-import { getAllPets, getPetsById} from "../../services/PetService"
+import { getAllPets} from "../../services/PetService"
 import "./Pets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate, useParams } from "react-router-dom"
 import { getAllOwners } from "../../services/OwnerService"
-import { getUserById } from "../../services/UserService"
 
 
-export const Pets = ({currentUser}) => {
+
+export const Pets = ({currentUser, pets}) => {
     const [allPets, setAllPets] = useState([])
     const [singlePet, setSinglePet] =useState([])
     const [owner, setOwner] =useState([])
     const [owners, setOwners] = useState([])
     const [type, setType] = useState([])
     
-    const {ownerId} = useParams()
-    const {petId} = useParams()
-   
+    // const {ownerId} = useParams()
+    // const {petId} = useParams()
+ 
     const Navigate = useNavigate()
     
     useEffect( () => {
         getAllPets().then((petArray) =>{
-            setAllPets(petArray)
-            console.log("Pets Set",petArray )
-        })
-    }, [])
+            const currentUserPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);
+        
+        // Set the filtered pets in the state
+        setAllPets(currentUserPets);
+        
+        console.log("Pets Set",petArray, currentUserPets);
+    });
+}, [currentUser.id]);
+            
+            // if currentuser.id === pet.petOwnerId then display currentUserPets
+            // need the petOwnerId out of pets array if -conditional it matches the currentUserId ===
+            
 
     useEffect( () => {
         getAllOwners().then((ownersArray) =>{
@@ -40,25 +48,7 @@ export const Pets = ({currentUser}) => {
         })
     }, [])
 
-    useEffect(()=> {
-        getUserById(ownerId).then((data) => {
-            const singleOwner = data[0]
-            if(singleOwner) {
-                setOwner(singleOwner)
-            }
-        }
-        )
-    }, [ownerId])
 
-    useEffect(()=> {
-        getPetsById(petId).then((data) => {
-            const singlePet = data[0]
-            if(singlePet) {
-                setSinglePet(singlePet)
-            }
-        }
-        )
-    }, [petId])
     
     const handleSave = (event) => {
         event.preventDefault()
@@ -82,20 +72,11 @@ export const Pets = ({currentUser}) => {
         <section className="pet">
             
             <h2>My Pets</h2>
-            {allPets.map((pet) => {
-         return (
-         <div className="pet" key={pet.id}>
+            
+        
+         <div className="pet" >
              <div key={owner.id}>Owner ID # {currentUser.id}</div>
-             <div key={currentUser.id}>Pet # {pet.id}</div> 
-             <div>Name: {pet.name}</div>
-             <div>I am a "{type.map((typeObj) => {
-             return (
-                 <div key={typeObj.id} value={typeObj.type}>
-                 {typeObj.type}
-                 </div>
-             )
-             })}"</div>
-             <div>Description: {pet.description}</div>
+            <div>{currentUser.currentUserPets}</div>
         <button className="form-btn" type="submit" 
          onClick={handleSave}
         >Update</button>
@@ -103,13 +84,9 @@ export const Pets = ({currentUser}) => {
         onClick={handleDelete}
         >Delete</button>
              </div>
-         )
-     })}
+       
+     
     
-             {/* {allPets.filter((pet) => pet.petOwnerId === ownerId) 
-             .map((pet) => (
-             <div key={pet.id}>{pet.id}</div>
-             ))} */}
      </section>
      </article>
      </div>

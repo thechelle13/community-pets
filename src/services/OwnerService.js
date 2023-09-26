@@ -6,7 +6,7 @@ export const getAllOwners = () => {
 }
 
 // showing not found - used in Owners
-export const getOwnersById = (id) => {
-    return fetch(`http://localhost:8088/petOwners?_expand=id${id}`).then((res) => res.json()
-    )
-}
+// export const getOwnersById = (id) => {
+//     return fetch(`http://localhost:8088/petOwners?_expand=id${id}`).then((res) => res.json()
+//     )
+// }

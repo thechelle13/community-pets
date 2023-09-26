@@ -4,12 +4,15 @@ import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
 
-export const AddPets = () => {
+
+// how to link pet-user key to petOwnerId when new pet created?
+export const AddPets = ({currentUser}) => {
 
     const [type, setType] = useState([])
     const [newPet, setNewPet] = useState({
         name:"", 
-        petOwnerId: 0, 
+        petOwnerId: 0
+        , 
         petTypeId: 0,
         description: ""
     })
@@ -19,6 +22,7 @@ export const AddPets = () => {
         getAllPetTypes().then((typeArray)=>{
             setType(typeArray)
             console.log("Type set.")
+            
         })
     }, [])
 

@@ -30,3 +30,8 @@
   .about {
     font-family: "Quicksand", sans-serif;
   }
+
+  .cat {
+    animation: float 4s ease-in-out infinite;
+    width: 200px;
+  }

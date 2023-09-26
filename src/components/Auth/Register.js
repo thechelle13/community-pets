@@ -4,8 +4,10 @@ import { createUser, getUserByEmail } from "../../services/UserService"
 
 export const Register = (props) => {
     const [owner, setOwner] = useState({
-      email: "",
+      
       fullName: "",
+      email: "",
+      city: "",
       isPetOwner: true,
     })
     
@@ -19,7 +21,9 @@ export const Register = (props) => {
               JSON.stringify({
                 id: createdUser.id,
                 isPetOwner: createdUser.isPetOwner,
-                email: createdUser.email
+                fullName: createdUser.fullName, 
+                email: createdUser.email, 
+                city: createdUser.city
               })
             )
             navigate("/")
@@ -95,32 +99,7 @@ export const Register = (props) => {
               </div>
             </fieldset>
 
-            {/* <fieldset>
-              <div className="form-group">
-                <input
-                  onChange={updateOwners}
-                  type="text"
-                  id="city"
-                  className="form-control"
-                  placeholder="Enter your Pet's name"
-                  required
-                  autoFocus
-                />
-              </div>
-            </fieldset>
-            <fieldset>
-              <div className="form-group">
-                <input
-                  onChange={updateOwners}
-                  type="text"
-                  id="city"
-                  className="form-control"
-                  placeholder="Select your Pet's type"
-                  required
-                  autoFocus
-                />
-              </div>
-            </fieldset> */}
+           
             <fieldset>
               <div className="form-group">
                 <label>
