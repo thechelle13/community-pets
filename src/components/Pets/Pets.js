@@ -1,22 +1,18 @@
 import { useEffect, useState } from "react"
 import { getAllPets} from "../../services/PetService"
 import "./Pets.css"
-import { getAllPetTypes } from "../../services/PetTypeService"
-import { useNavigate, useParams } from "react-router-dom"
+//import { getAllPetTypes } from "../../services/PetTypeService"
+import { useNavigate} from "react-router-dom"
 import { getAllOwners } from "../../services/OwnerService"
 
 
 
-export const Pets = ({currentUser, pets}) => {
-    const [allPets, setAllPets] = useState([])
-    const [singlePet, setSinglePet] =useState([])
+export const Pets = ({currentUser}) => {
+    const [pet, setPets] = useState([])
     const [owner, setOwner] =useState([])
-    const [owners, setOwners] = useState([])
-    const [type, setType] = useState([])
-    
-    // const {ownerId} = useParams()
-    // const {petId} = useParams()
- 
+   
+    //const [type, setType] = useState([])
+
     const Navigate = useNavigate()
     
     useEffect( () => {
@@ -24,29 +20,29 @@ export const Pets = ({currentUser, pets}) => {
             const currentUserPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);
         
         // Set the filtered pets in the state
-        setAllPets(currentUserPets);
-        
-        console.log("Pets Set",petArray, currentUserPets);
+        setPets(currentUserPets);
+        console.log("Pet Set", currentUserPets)
+        ;
     });
 }, [currentUser.id]);
             
-            // if currentuser.id === pet.petOwnerId then display currentUserPets
-            // need the petOwnerId out of pets array if -conditional it matches the currentUserId ===
-            
+                        
 
     useEffect( () => {
         getAllOwners().then((ownersArray) =>{
-            setOwners(ownersArray)
-            console.log("Owners Set", ownersArray)
-        })
-    }, [])
+            const thisUser = ownersArray.filter((owner) => owner.id === currentUser.id);
+            setOwner(ownersArray)
 
-    useEffect(() => {
-        getAllPetTypes().then((typeArray)=>{
-            setType(typeArray)
-            console.log("Types set.", typeArray)
+            console.log("Owner Set", thisUser)
         })
-    }, [])
+    }, [currentUser.id])
+
+    // useEffect(() => {
+    //     getAllPetTypes().then((typeArray)=>{
+    //         setType(typeArray)
+    //         console.log("Types set.", typeArray)
+    //     })
+    // }, [])
 
 
     
@@ -67,16 +63,19 @@ export const Pets = ({currentUser, pets}) => {
                 <span>Community Pets</span>
             </h1>
             </section>
-            <article className="form">
+            <form className="form">
 
-        <section className="pet">
+        <section className="form-group">
             
             <h2>My Pets</h2>
             
-        
+       
          <div className="pet" >
-             <div key={owner.id}>Owner ID # {currentUser.id}</div>
-            <div>{currentUser.currentUserPets}</div>
+             <div key={owner.id}>Owner ID # 
+             {currentUser.id}
+
+             {pet.name}</div>
+            
         <button className="form-btn" type="submit" 
          onClick={handleSave}
         >Update</button>
@@ -84,35 +83,9 @@ export const Pets = ({currentUser, pets}) => {
         onClick={handleDelete}
         >Delete</button>
              </div>
-       
-     
-    
      </section>
-     </article>
+     </form>
      </div>
      )
  }
 
-//  {/* {petByPetOwnerId
-//                         .filter((pet) => pet.petOwnerId === petOwnerId) // Filter pets by matching petOwnerId
-//                         .map((pet) => (
-//                             <div className="pet" key={pet.id}>
-//                                 <div >Pet # {pet.id}</div>
-//                                 <div>Name: {pet.name}</div>
-//                                 <div>
-//                                     I am a "{type.find((typeObj) => typeObj.id === pet.petTypeId)?.type}"
-//                                 </div>
-//                                 <div>Description: {pet.description}</div>
-//                                 <button className="form-btn" type="submit" onClick={handleSave}>
-//                                     Update
-//                                 </button>
-//                                 <button className="form-btn" type="submit" onClick={handleDelete}>
-//                                     Delete
-//                                 </button>
-//                             </div>
-//                         ))}
-//                 </section>
-//             </article>
-//         </div>
-//     )
-// } */}

@@ -9,10 +9,10 @@ import { useNavigate} from "react-router-dom"
 export const AddPets = ({currentUser}) => {
 
     const [type, setType] = useState([])
+    // petOwnerId is not working
     const [newPet, setNewPet] = useState({
         name:"", 
-        petOwnerId: 0
-        , 
+        petOwnerId: parseInt(currentUser), 
         petTypeId: 0,
         description: ""
     })
@@ -56,7 +56,7 @@ export const AddPets = ({currentUser}) => {
             </h1>
             </section>
         <form className="form">
-            <h2>Pet Update:</h2>
+            <h2>Add A Pet</h2>
             <fieldset>
             <div className="form-group">
             <label htmlFor="name" >Name:</label>
