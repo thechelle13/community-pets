@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react"
-import { getAllOwners} from "../../services/OwnerService"
 import "./Owners.css"
 import { useNavigate} from "react-router-dom"
 

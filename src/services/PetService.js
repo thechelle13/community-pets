@@ -33,7 +33,7 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
-  // not done
+  // not found 
   export const petDelete =  () => {
     return fetch (`http://localhost:8088/pets`, {
       method: "DELETE",

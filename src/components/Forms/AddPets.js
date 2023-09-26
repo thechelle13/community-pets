@@ -9,10 +9,9 @@ import { useNavigate} from "react-router-dom"
 export const AddPets = ({currentUser}) => {
 
     const [type, setType] = useState([])
-    // petOwnerId is not working
     const [newPet, setNewPet] = useState({
         name:"", 
-        petOwnerId: parseInt(currentUser), 
+        petOwnerId: currentUser.id, 
         petTypeId: 0,
         description: ""
     })

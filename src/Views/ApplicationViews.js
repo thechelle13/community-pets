@@ -8,6 +8,7 @@ import { AddPets } from "../components/Forms/AddPets"
 import { EditPet } from "../components/Forms/EditPets"
 import { DeletePet } from "../components/Forms/DeletePet"
 import { EditOwners } from "../components/Forms/EditOwners"
+import { DeleteOwners } from "../components/Forms/DeleteOwners"
 
 export const ApplicationViews = () => {
 
@@ -36,6 +37,7 @@ export const ApplicationViews = () => {
       <Route index element={<Welcome/>}/>
       <Route path="Owners" element={<Owners currentUser={currentUser}/> }/>
       <Route path="EditOwners" element={<EditOwners currentUser={currentUser}/> }/>
+      <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
       <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
         <Route path="EditPets" element={<EditPet currentUser={currentUser}/>}/>
         <Route path="DeletePet" element={<DeletePet currentUser={currentUser}/>}/>

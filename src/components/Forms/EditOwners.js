@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import "./Addpets.css"
 
 import { useNavigate} from "react-router-dom"
@@ -55,7 +55,7 @@ export const EditOwners = ({currentUser}) => {
             <fieldset>
               <div className="form-group">
                 <input
-                  onChange={editUser}
+                  onChange={handleInputChange}
                   type="text"
                   id="fullName"
                   className="form-control"
@@ -68,7 +68,7 @@ export const EditOwners = ({currentUser}) => {
             <fieldset>
               <div className="form-group">
                 <input
-                  onChange={editUser}
+                  onChange={handleInputChange}
                   type="email"
                   id="email"
                   className="form-control"
@@ -80,7 +80,7 @@ export const EditOwners = ({currentUser}) => {
             <fieldset>
               <div className="form-group">
                 <input
-                  onChange={editUser}
+                  onChange={handleInputChange}
                   type="text"
                   id="city"
                   className="form-control"
@@ -110,7 +110,7 @@ export const EditOwners = ({currentUser}) => {
               </div>
             </fieldset>
             <section>
-            <button className="form-btn" type="submit" onClick={handleSave}>Edit Pet</button>
+            <button className="form-btn" type="submit" onClick={handleSave}>Edit Owner</button>
             </section>     
         </form>
         </div>
