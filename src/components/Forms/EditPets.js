@@ -4,7 +4,7 @@ import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
 import { petEdited } from "../../services/PetService"
 
-export const EditPet = () => {
+export const EditPet = ({currentUserPets}) => {
     const [type, setType] = useState([])
     const [editPet, setEditPet] = useState({
         name:"", 
@@ -54,7 +54,14 @@ export const EditPet = () => {
             </section>
         <form className="form">
             <h2>Pet Update:</h2>
-            {/* <fieldset>
+            
+                <div className="pet" >
+                  <p>Current Pet Info: {currentUserPets}</p>
+                  
+                  
+                </div>
+              
+            <fieldset>
             <div className="form-group">
             <label htmlFor="name" >Name:</label>
                 <input
@@ -104,7 +111,7 @@ export const EditPet = () => {
             )
             })}
         </select>
-            </fieldset> */}
+            </fieldset>
             <section>
             <button className="form-btn" type="submit" onClick={handleSave}>Edit Pet</button>
             </section>     

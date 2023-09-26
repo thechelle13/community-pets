@@ -5,7 +5,7 @@ import { useNavigate} from "react-router-dom"
 import { userEdited } from "../../services/UserService"
 
 
-export const EditOwners = () => {
+export const EditOwners = ({currentUser}) => {
     const [owner, setOwner] = useState([])
     const [editUser, setEditUser] = useState({
         name:"", 
@@ -48,6 +48,10 @@ export const EditOwners = () => {
             </section>
         <form className="form">
             <h2>Owner Update:</h2>
+            <div currentUser={currentUser.id}>Current Info: {currentUser.id}</div>
+            <div currentUser={currentUser.id}>Full Name: {currentUser.fullName}</div>
+            <div currentUser={currentUser.id}>Email: {currentUser.email}</div>
+            <div currentUser={currentUser.id}>City: {currentUser.city}</div>
             <fieldset>
               <div className="form-group">
                 <input

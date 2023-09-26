@@ -4,10 +4,7 @@ import "./Owners.css"
 import { useNavigate} from "react-router-dom"
 
 export const Owners = ({currentUser}) => {
- 
     //const [owners, setOwners] = useState([])
-    
-  
     const Navigate = useNavigate()
 
   //   useEffect(() => {
@@ -18,7 +15,6 @@ export const Owners = ({currentUser}) => {
   // }, [])
   
 
-
 const handleSave = (event) => {
   event.preventDefault()
       Navigate(`/EditOwners`) 
@@ -28,7 +24,7 @@ const handleSave = (event) => {
       Navigate(`./DeleteOwners`)
 }
 
-  return (<>
+  return (
     <div className="welcome-container">
             <section className="pet">
             <h1 className="new">
@@ -36,12 +32,10 @@ const handleSave = (event) => {
                 <span>Community Pets</span>
             </h1>
             </section>
-    </div>
-    <div className="owners-container">
-      
-      <h2>My Details:</h2>
-     
-      <article className="owner">
+      <form className="form"> 
+        <section className="form-group">
+            <h2>My Details:</h2>
+          <article className="owner">
                     
               <div >User #: {currentUser.id}
               </div>
@@ -57,11 +51,15 @@ const handleSave = (event) => {
               <button className="form-btn" type="submit" 
                 onClick={handleDelete}
                 >Delete</button>
-        </article>
-    </div>
-    </>
-      
+          </article>
+        </section> 
+      </form>
+    </div> 
   )
 }
-            
-   
+
+
+         
+         
+         
+

@@ -11,13 +11,6 @@ export const getPetsById = () => {
     )
 }
 
-
-// export const getPetByPetOwnerId = (petOwnerId) => {
-//   return fetch(`http://localhost:8088/pets?_expand=petOwnerId=${petOwnerId}`).then((res) =>
-//     res.json()
-//   )
-// }
-
 // working
 export const createNewPet = (newPet) => {
     return fetch(`http://localhost:8088/pets`, {
@@ -29,8 +22,7 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
-
-  // fetch not found 
+  // fetch not found 404 on PUT /undefined
   export const petEdited = (editPet) => {
     return fetch(`http://localhost:8088/pets/${editPet.id}`, {
       method: "PUT",
