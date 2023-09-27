@@ -4,9 +4,9 @@ export const getAllPets =  () => {
     )
 }
 
-//working
-export const getPetsById = () => {
-    return fetch(`http://localhost:8088/pets?_expand=petOwnerId`).then((res) => res.json()
+// undefined ?
+export const getPetById = () => {
+    return fetch(`http://localhost:8088//pets?_expand=petOwnerId`).then((res) => res.json()
     )
 }
 
@@ -22,24 +22,26 @@ export const createNewPet = (newPet) => {
   }
 
   // fetch not found 404 on PUT /undefined
-  export const petEdited = (pet) => {
-    return fetch(`http://localhost:8088/pets/${pet.id}`, {
+  export const petEdited = (pets) => {
+    return fetch(`http://localhost:8088/pets/${pets}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(pet),
+      body: JSON.stringify(pets),
     }).then((res) => res.json())
   }
 
+  
   // not found pets/undefined 
-  export const petDelete =  (pets) => {
-    return fetch (`http://localhost:8088/pets/${pets}`, {
+  export const petDelete =  (petId) => {
+    return fetch (`http://localhost:8088/pets/${petId}`, {
       method: "DELETE"
     })
   
   }
- 
+
+    
 
 
 

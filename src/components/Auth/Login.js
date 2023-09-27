@@ -34,7 +34,7 @@ export const Login = () => {
       <main className="container-login">
         <section>
           <form className="form-login" onSubmit={handleLogin}>
-          <h1>
+          <h1 className="new">
                 <span>Welcome to
                 </span>
                 <div></div>

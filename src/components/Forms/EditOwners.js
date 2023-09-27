@@ -26,13 +26,13 @@ export const EditOwners = ({ currentUser, setCurrentUser }) => {
 
     userEdited(updatedUser)
       .then((res) => {
-        console.log("API Response:", res);
-        setCurrentUser(res); // Update the currentUser state with the new data
+        //console.log("API Response:", res);
+        setCurrentUser(res); 
         Navigate(`/Owners`);
       })
       .catch((error) => {
-        console.error("Error updating user data:", error);
-        // Handle the error as needed
+        //console.error("Error updating user data:", error);
+      
       });
   };
 
@@ -59,7 +59,7 @@ export const EditOwners = ({ currentUser, setCurrentUser }) => {
               placeholder="Enter your First and Last name"
               required
               autoFocus
-              value={owner.fullName} // Set the input value to reflect the current state
+              value={owner.fullName} 
             />
           </div>
         </fieldset>
@@ -72,7 +72,8 @@ export const EditOwners = ({ currentUser, setCurrentUser }) => {
               className="form-control"
               placeholder="Email address"
               required
-              value={owner.email} // Set the input value to reflect the current state
+              autoFocus
+              value={owner.email} 
             />
           </div>
         </fieldset>
@@ -86,7 +87,7 @@ export const EditOwners = ({ currentUser, setCurrentUser }) => {
               placeholder="Enter your City"
               required
               autoFocus
-              value={owner.city} // Set the input value to reflect the current state
+              value={owner.city} 
             />
           </div>
         </fieldset>
@@ -102,7 +103,7 @@ export const EditOwners = ({ currentUser, setCurrentUser }) => {
                 type="checkbox"
                 id="isPetOwner"
                 required
-                checked={owner.isPetOwner} // Set the checkbox state to reflect the current state
+                checked={owner.isPetOwner} 
               />
               I am a pet owner{" "}
             </label>

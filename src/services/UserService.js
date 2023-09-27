@@ -39,17 +39,4 @@ export const userDelete =  (petOwnerId) => {
     }).then((res) => res.json())
   }
 
-//   export const userEdited = async(petOwners) => {
- 
-//     const res = await fetch (`http://localhost:8088/petOwners/${petOwners.id}`
-//        ,{
-//        method: "PUT",
-//        headers: {
-//                "Content-Type": "application/json"
-//        },
-//        body: JSON.stringify(petOwners)
-//    })
-//    const editOwner = await res.json()
-//    return editOwner
-// }
 
