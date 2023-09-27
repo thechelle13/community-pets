@@ -13,12 +13,17 @@ import { DeleteOwners } from "../components/Forms/DeleteOwners"
 export const ApplicationViews = () => {
 
     const [currentUser, setCurrentUser] = useState({})
-  
+    const [currentUserPets, setCurrentUserPets] = useState({})
   
   useEffect(() => {
     const localPetUser = localStorage.getItem("pet_user")
     const petUserObject = JSON.parse(localPetUser)
     setCurrentUser(petUserObject)
+  }, [] )
+  useEffect(() => {
+    const localPetUserPets = localStorage.getItem("pet_user")
+    const petUserPetObject = JSON.parse(localPetUserPets)
+    setCurrentUserPets(petUserPetObject)
   }, [] )
 
     return (
@@ -40,7 +45,7 @@ export const ApplicationViews = () => {
       <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
       <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
         <Route path="EditPets" element={<EditPet currentUser={currentUser}/>}/>
-        <Route path="Pets/DeletePet" element={<DeletePet currentUser={currentUser}/>}/>
+        <Route path="Pets/DeletePet" element={<DeletePet currentUser={currentUser} currentUserPets={currentUserPets}/>}/>
         <Route path="AddPets" element={<AddPets currentUser={currentUser}/>}/>
       </Route>
   </Routes> 

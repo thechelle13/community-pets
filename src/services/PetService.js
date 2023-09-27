@@ -1,4 +1,3 @@
-
 // working 
 export const getAllPets =  () => {
     return fetch(`http://localhost:8088/pets`).then((res) => res.json()
@@ -34,12 +33,13 @@ export const createNewPet = (newPet) => {
   }
 
   // not found 
-  export const petDelete =  (pet) => {
-    return fetch (`http://localhost:8088/pets/${pet.id}`, {
-      method: "DELETE",
+  export const petDelete =  (petId) => {
+    return fetch (`http://localhost:8088/pets/${petId}`, {
+      method: "DELETE"
     })
-    .then((res) => res.json())
+   
   }
+ 
 
 
 

@@ -5,27 +5,21 @@ import { useEffect, useState } from "react"
 
 
 export const DeletePet =({currentUser}) => {
-    const [deletePet, setDeletePet] = useState({})
+
 const Navigate = useNavigate()
 
-// useEffect(()=> {
-//     petDelete().then((delPetObj)=>{
-//         setDeletePet(delPetObj)
-//         console.log("Type set.")
-//     })
-// }, [])
-
+//use Effect that takes currentUserId and if equal to petOwnerId delete
 
 const handleDelete = (event) => {
-             event.preventDefault()
+            event.preventDefault()
     
-             const delPet = {
+            const delPet = {
                 id: currentUser.id,
                 
             }
             petDelete(currentUser.id).then(() => {
-                 Navigate(`/Pets`)
-             })
+                Navigate(`/Pets`)
+            })
             }
     return (
         <div className="welcome-container">

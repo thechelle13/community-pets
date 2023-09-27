@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import "./Owners.css"
 import { useNavigate} from "react-router-dom"
 
@@ -5,12 +6,9 @@ export const Owners = ({currentUser}) => {
     //const [owners, setOwners] = useState([])
     const Navigate = useNavigate()
 
-  //   useEffect(() => {
-  //   getAllOwners().then((ownerObj) => {
-  //     setOwners(ownerObj)
-  //     console.log("Owners Set", ownerObj)
-  //   })
-  // }, [])
+    useEffect( ()=> {
+      
+    },[currentUser.fullName])
   
 
 const handleSave = (event) => {

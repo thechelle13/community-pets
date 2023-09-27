@@ -42,7 +42,7 @@ export const Pets = ({currentUser}) => {
               {currentUserPets.map((pet) => (
                 <div className="pet" key={pet.id}>
                   <p>Name: {pet.name}</p>
-                  <p>Pet Type: {pet.petType}</p>
+                  <p>Pet Type: {pet.petTypeId}</p>
                   <p>Description: {pet.description}</p>
     
                   <button className="form-btn" type="submit" onClick={handleSave}>
@@ -54,9 +54,9 @@ export const Pets = ({currentUser}) => {
                 </div>
               ))}
             </section>
-            <button className="form-btn">Add A Pet
-            {/* {<AddPets/>} */}
-            </button>
+            {/* <button className="form-btn">Add A Pet
+            {<AddPets/>}
+            </button> */}
           </form>
           
         </div>

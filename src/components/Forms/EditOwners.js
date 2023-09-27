@@ -8,23 +8,15 @@ import { getUserById, userEdited } from "../../services/UserService"
 export const EditOwners = ({currentUser}) => {
     const [owner, setOwner] = useState([])
 
-const {petOwnerId} = useParams()
+    const {petOwnerId} = useParams()
 
-useEffect(() => {
-    getUserById(petOwnerId).then((ownerObj) => {
-      setOwner(ownerObj)
-    })
-  }, [petOwnerId])
-
-    // const [editUser, setEditUser] = useState({
-    //     fullName: "", 
-    //     city: "", 
-    //     email: "",
-    //     isPetOwner: true
-    // })
+    useEffect(() => {
+        getUserById(petOwnerId).then((ownerObj) => {
+        setOwner(ownerObj)
+        })
+    }, [petOwnerId])
+    
     const Navigate = useNavigate()
-
-
 
     // investigate this
     const handleInputChange = (evt) => {
@@ -32,7 +24,6 @@ useEffect(() => {
         copy[evt.target.id] = evt.target.value
         setOwner(copy)
     }
-
     const handleSave = (event) => {
         event.preventDefault()
 
@@ -43,15 +34,16 @@ useEffect(() => {
             city: owner.city,
             email: owner.email
         }
-        userEdited(updatedUser,currentUser.id).then(() => {
+        userEdited(updatedUser).then((response) => {
+          console.log("API Response:", response)
+          setOwner(response)
             Navigate(`/Owners`)
         })
     }
-
     return (
         <div className="welcome-container">
         <section className="pet">
-        <h1 className="new">
+            <h1 className="new">
                 <span>Community Pets</span>
             </h1>
             </section>
