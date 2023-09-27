@@ -14,10 +14,10 @@ const handleDelete = (event) => {
             event.preventDefault()
     
             const delPet = {
-                id: currentUser.id,
+                id: currentUser.petId,
                 
             }
-            petDelete(currentUser.id).then(() => {
+            petDelete(currentUser.petId).then(() => {
                 Navigate(`/Pets`)
             })
             }

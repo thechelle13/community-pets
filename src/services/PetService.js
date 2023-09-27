@@ -32,9 +32,9 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
-  // not found 
-  export const petDelete =  (petId) => {
-    return fetch (`http://localhost:8088/pets/${petId}`, {
+  // not found pets/undefined 
+  export const petDelete =  (pets) => {
+    return fetch (`http://localhost:8088/pets/${pets}`, {
       method: "DELETE"
     })
    
