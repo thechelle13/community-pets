@@ -39,7 +39,7 @@ export const AddPets = ({currentUser}) => {
             name: newPet.name,
             petOwnerId: parseInt(newPet.petOwnerId),
             description: newPet.description,
-            petTypeId: parseInt(newPet.petType)
+            petTypeId: parseInt(newPet.petTypeId)
         }
         createNewPet(updatedPet).then(() => {
             Navigate(`/Pets`)

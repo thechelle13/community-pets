@@ -108,6 +108,7 @@ export const EditPet = ({currentUser}) => {
             <div> Pet Type:</div>
             <select
             name="petType"
+            id="petType"
             value={editPet.petType}         
             onChange={(event) => {
             const petCopy = { ...editPet }

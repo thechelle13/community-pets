@@ -1,11 +1,11 @@
 import "./Welcome.css";
-import dogImage from "../assets/IMG_1440.jpeg"; // Adjust the path based on your project structure
+import dogImage from "../assets/IMG_1440.jpeg"
 
 export const Welcome = () => {
     return (
     <div className="welcome-container">
         <div className="dog-images">
-        <img className="app-logo" src={dogImage} alt="Good Doggy" />
+        <img className="app-logo" src={dogImage} alt="Sleepy Doggy" />
         </div>
         <h1>
         <span className="welcome-title">Welcome to </span>

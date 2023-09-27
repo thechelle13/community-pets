@@ -35,10 +35,11 @@ const handleDelete = (event) => {
         <form className="form">
             <h2>Pet Delete:</h2>
             {selectedDelPet}
+            </form>
         <div>
         <button className="form-btn" onClick={handleDelete} >Delete this Pet?</button>
         </div>
-        </form>
+        
         </div>
     )
 }
