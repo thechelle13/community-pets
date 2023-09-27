@@ -23,19 +23,19 @@ export const createNewPet = (newPet) => {
   }
 
   // fetch not found 404 on PUT /undefined
-  export const petEdited = (editPet) => {
-    return fetch(`http://localhost:8088/pets/${editPet.id}`, {
+  export const petEdited = (pet) => {
+    return fetch(`http://localhost:8088/pets/${pet.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editPet),
+      body: JSON.stringify(pet),
     }).then((res) => res.json())
   }
 
   // not found 
-  export const petDelete =  () => {
-    return fetch (`http://localhost:8088/pets`, {
+  export const petDelete =  (pet) => {
+    return fetch (`http://localhost:8088/pets/${pet.id}`, {
       method: "DELETE",
     })
     .then((res) => res.json())

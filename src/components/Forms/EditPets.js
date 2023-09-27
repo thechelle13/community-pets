@@ -2,9 +2,10 @@ import { useEffect, useState } from "react"
 import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
-import { petEdited } from "../../services/PetService"
+import { getAllPets, petEdited } from "../../services/PetService"
 
-export const EditPet = ({currentUserPets}) => {
+export const EditPet = ({currentUser}) => {
+    const [currentUserPets, setCurrentUserPets] = useState([])
     const [type, setType] = useState([])
     const [editPet, setEditPet] = useState({
         name:"", 
@@ -14,7 +15,15 @@ export const EditPet = ({currentUserPets}) => {
     })
     const Navigate = useNavigate()
 
-// use effect for setEditpet? 
+    useEffect( () => {
+        getAllPets().then((petArray) =>{
+            const filteredPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);       
+        // Set the filtered pets in the state
+        setCurrentUserPets(filteredPets);
+        console.log("Pet Set", filteredPets)
+        ;
+    });
+}, [currentUser.id]); 
 
     useEffect(() => {
         getAllPetTypes().then((typeArray)=>{
@@ -56,7 +65,13 @@ export const EditPet = ({currentUserPets}) => {
             <h2>Pet Update:</h2>
             
                 <div className="pet" >
-                  <p>Current Pet Info: {currentUserPets}</p>
+                  <div>Current Pet Info:  {currentUserPets.map((pet) => (
+                <div className="pet" key={pet.id}>
+                  <p>Name: {pet.name}</p>
+                  <p>Pet Type: {pet.petType}</p>
+                  <p>Description: {pet.description}</p>
+                </div>
+              ))}</div>
                   
                   
                 </div>

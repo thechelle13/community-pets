@@ -16,21 +16,31 @@ export const createUser = (petOwnerId) => {
       res.json()
     )
   }
-// /undefined PUT 404 not found
-  export const userEdited = (editUser) => {
-    return fetch(`http://localhost:8088/petOwners/${editUser.id}`, {
+
+  export const getUserById = (id) => {
+    return fetch(`http://localhost:8088/petOwners?id=${id}`).then((res) =>
+      res.json()
+    )
+  }
+
+//PUT / undefined 404 not found http://localhost:8088/petOwners/${petOwner.id}
+// /[objectObject] PUT 404 not found http://localhost:8088/petOwners/${petOwner}
+
+  export const userEdited = (petOwnerId) => {
+    return fetch(`http://localhost:8088/petOwners/${petOwnerId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editUser),
+      body: JSON.stringify(petOwnerId),
     }).then((res) => res.json())
   }
 
-  // not done
-  export const userDelete =  () => {
-    return fetch (`http://localhost:8088/petOwners`, {
-      method: "DELETE",
+// /[objectObject] DELETE 404 not found
+  export const userDelete =  (petOwnerId) => {
+    return fetch (`http://localhost:8088/petOwners/${petOwnerId}`, {
+      method: "DELETE"
     })
-    .then((res) => res.json())
+    
   }
+

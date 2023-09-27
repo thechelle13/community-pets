@@ -4,30 +4,27 @@ import "./Addpets.css"
 import { useEffect, useState } from "react"
 
 
-export const DeletePet =() => {
+export const DeletePet =({currentUser}) => {
     const [deletePet, setDeletePet] = useState({})
 const Navigate = useNavigate()
 
-useEffect(()=> {
-    petDelete().then((delPetObj)=>{
-        setDeletePet(delPetObj)
-        console.log("Type set.")
-    })
-}, [])
+// useEffect(()=> {
+//     petDelete().then((delPetObj)=>{
+//         setDeletePet(delPetObj)
+//         console.log("Type set.")
+//     })
+// }, [])
 
 
 const handleDelete = (event) => {
              event.preventDefault()
     
              const delPet = {
-    //             id: pet.id,
-    //             name: pet.name,
-    //             petOwnerId: pet.petOwnerId,
-    //             description: pet.description,
-    //             petTypeId: pet.petTypeId,
+                id: currentUser.id,
+                
             }
-            petDelete(delPet).then(() => {
-                 Navigate(`./Pets`)
+            petDelete(currentUser.id).then(() => {
+                 Navigate(`/Pets`)
              })
             }
     return (

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { getAllPets} from "../../services/PetService"
 import "./Pets.css"
 import { useNavigate} from "react-router-dom"
+import { AddPets } from "../Forms/AddPets";
 
 export const Pets = ({currentUser}) => {
     const [currentUserPets, setCurrentUserPets] = useState([])
@@ -53,7 +54,11 @@ export const Pets = ({currentUser}) => {
                 </div>
               ))}
             </section>
+            <button className="form-btn">Add A Pet
+            {/* {<AddPets/>} */}
+            </button>
           </form>
+          
         </div>
       );
     };

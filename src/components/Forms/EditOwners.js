@@ -1,40 +1,49 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import "./Addpets.css"
 
-import { useNavigate} from "react-router-dom"
-import { userEdited } from "../../services/UserService"
+import { useNavigate, useParams} from "react-router-dom"
+import { getUserById, userEdited } from "../../services/UserService"
 
 
 export const EditOwners = ({currentUser}) => {
     const [owner, setOwner] = useState([])
-    const [editUser, setEditUser] = useState({
-        name:"", 
-        petOwnerId: 0, 
-        petTypeId: 0,
-        description: ""
+
+const {petOwnerId} = useParams()
+
+useEffect(() => {
+    getUserById(petOwnerId).then((ownerObj) => {
+      setOwner(ownerObj)
     })
+  }, [petOwnerId])
+
+    // const [editUser, setEditUser] = useState({
+    //     fullName: "", 
+    //     city: "", 
+    //     email: "",
+    //     isPetOwner: true
+    // })
     const Navigate = useNavigate()
 
 
 
     // investigate this
     const handleInputChange = (evt) => {
-        const copy = { ...editUser }
+        const copy = { ...owner }
         copy[evt.target.id] = evt.target.value
-        setEditUser(copy)
+        setOwner(copy)
     }
 
     const handleSave = (event) => {
         event.preventDefault()
 
         const updatedUser = {
-            id: editUser.id,
-            name: editUser.fullName,
-            isPetOwner: editUser.isPetOwner,
-            city: editUser.city,
-            email: editUser.email
+            id: currentUser.id,
+            fullName: owner.fullName,
+            isPetOwner: owner.isPetOwner,
+            city: owner.city,
+            email: owner.email
         }
-        userEdited(updatedUser).then(() => {
+        userEdited(updatedUser,currentUser.id).then(() => {
             Navigate(`/Owners`)
         })
     }
@@ -48,10 +57,10 @@ export const EditOwners = ({currentUser}) => {
             </section>
         <form className="form">
             <h2>Owner Update:</h2>
-            <div currentUser={currentUser.id}>Current Info: {currentUser.id}</div>
-            <div currentUser={currentUser.id}>Full Name: {currentUser.fullName}</div>
-            <div currentUser={currentUser.id}>Email: {currentUser.email}</div>
-            <div currentUser={currentUser.id}>City: {currentUser.city}</div>
+            <div >Current Info: </div>
+            <div >Full Name: {currentUser.fullName}</div>
+            <div >Email: {currentUser.email}</div>
+            <div >City: {currentUser.city}</div>
             <fieldset>
               <div className="form-group">
                 <input

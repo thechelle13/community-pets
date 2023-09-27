@@ -40,7 +40,7 @@ export const ApplicationViews = () => {
       <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
       <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
         <Route path="EditPets" element={<EditPet currentUser={currentUser}/>}/>
-        <Route path="DeletePet" element={<DeletePet currentUser={currentUser}/>}/>
+        <Route path="Pets/DeletePet" element={<DeletePet currentUser={currentUser}/>}/>
         <Route path="AddPets" element={<AddPets currentUser={currentUser}/>}/>
       </Route>
   </Routes> 

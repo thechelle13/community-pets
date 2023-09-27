@@ -19,7 +19,7 @@ const handleSave = (event) => {
 }
   const handleDelete = (event) => {
       event.preventDefault()    
-      Navigate(`./DeleteOwners`)
+      Navigate(`/DeleteOwners`)
 }
 
   return (
