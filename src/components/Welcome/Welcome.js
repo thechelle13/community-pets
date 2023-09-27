@@ -1,21 +1,19 @@
-import "./Welcome.css"
+import "./Welcome.css";
+import dogImage from "../assets/IMG_1440.jpeg"; // Adjust the path based on your project structure
 
-export const Welcome = ()=> {
+export const Welcome = () => {
     return (
-        
-        <div className="welcome-container">
-            <div className="cat" src="/assets/kitten.jpg" />
-            <h1>
-                <span className="welcome-title">Welcome to </span>
-                <span>Community Pets</span>
-            </h1>
-            <div className="welcome-about">About:</div>
-            <div className="welcome-tagline">A site to list your pets.</div>
-            <div>
-            <div className="about">Coming Soon...</div>
-            <div className="about">An exchange pet service Board for fellow pet owners in your community.</div>
-            </div>
+    <div className="welcome-container">
+        <div className="dog-images">
+        <img className="app-logo" src={dogImage} alt="Good Doggy" />
         </div>
-        
-    )
-}
+        <h1>
+        <span className="welcome-title">Welcome to </span>
+        <span>Community Pets</span>
+        </h1>
+        <div className="welcome-about">A site to list your pets</div>
+        <div className="welcome-tagline">and post to a Pet Sitting Exchange Board.</div>
+    
+    </div>
+);
+};

@@ -9,6 +9,7 @@ import { EditPet } from "../components/Forms/EditPets"
 import { DeletePet } from "../components/Forms/DeletePet"
 import { EditOwners } from "../components/Forms/EditOwners"
 import { DeleteOwners } from "../components/Forms/DeleteOwners"
+import { PetPosts } from "../components/PetPosts/PetPosts"
 
 export const ApplicationViews = () => {
 
@@ -45,8 +46,9 @@ export const ApplicationViews = () => {
       <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
       <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
         <Route path="EditPets" element={<EditPet currentUser={currentUser}/>}/>
-        <Route path="Pets/DeletePet" element={<DeletePet currentUser={currentUser} currentUserPets={currentUserPets}/>}/>
+        <Route path="DeletePet" element={<DeletePet currentUser={currentUser} currentUserPets={currentUserPets}/>}/>
         <Route path="AddPets" element={<AddPets currentUser={currentUser}/>}/>
+        <Route path="PetPosts" element={<PetPosts currentUser={currentUser}/>}/>
       </Route>
   </Routes> 
 )}

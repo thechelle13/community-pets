@@ -99,7 +99,7 @@ export const Register = (props) => {
               </div>
             </fieldset>
 
-           
+          
             <fieldset>
               <div className="form-group">
                 <label>

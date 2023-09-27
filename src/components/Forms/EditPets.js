@@ -65,17 +65,17 @@ export const EditPet = ({currentUser}) => {
             <h2>Pet Update:</h2>
             
                 <div className="pet" >
-                  <div>Current Pet Info:  {currentUserPets.map((pet) => (
+                <div>Selected Pet Info:  {currentUserPets.map((pet) => (
                 <div className="pet" key={pet.id}>
-                  <p>Name: {pet.name}</p>
-                  <p>Pet Type: {pet.petType}</p>
-                  <p>Description: {pet.description}</p>
+                <p>Name: {pet.name}</p>
+                <p>Pet Type: {pet.petType}</p>
+                <p>Description: {pet.description}</p>
                 </div>
-              ))}</div>
-                  
-                  
+            ))}</div>
+                
+                
                 </div>
-              
+            
             <fieldset>
             <div className="form-group">
             <label htmlFor="name" >Name:</label>

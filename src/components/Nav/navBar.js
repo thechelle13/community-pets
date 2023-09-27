@@ -17,7 +17,7 @@ export const NavBar = () => {
                 <Link to="/Pets" className="navbar-link">My Pets</Link>
             </li>
             <li className="navbar-item">
-                <Link to="/AddPets" className="navbar-link">Add A Pet</Link>
+                <Link to="/PetPosts" className="navbar-link">PP Exchange</Link>
             </li>
             
             {localStorage.getItem("pet_user") ? (

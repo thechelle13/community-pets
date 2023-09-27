@@ -5,9 +5,13 @@ import { useEffect, useState } from "react"
 
 
 export const DeletePet =({currentUser}) => {
+const [selectedDelPet, setSelectedDelPet] = useState([])
 
 const Navigate = useNavigate()
 
+useEffect( ()=>{
+    setSelectedDelPet()
+},[])
 //use Effect that takes currentUserId and if equal to petOwnerId delete
 
 const handleDelete = (event) => {
@@ -17,7 +21,7 @@ const handleDelete = (event) => {
                 id: currentUser.petId,
                 
             }
-            petDelete(currentUser.petId).then(() => {
+            petDelete(selectedDelPet).then(() => {
                 Navigate(`/Pets`)
             })
             }
@@ -30,6 +34,7 @@ const handleDelete = (event) => {
             </section>
         <form className="form">
             <h2>Pet Delete:</h2>
+            {selectedDelPet}
         <div>
         <button className="form-btn" onClick={handleDelete} >Delete this Pet?</button>
         </div>

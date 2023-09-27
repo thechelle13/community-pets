@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom"
 import "./Addpets.css"
 import { userDelete } from "../../services/UserService"
+//import catImage from "assets/IMG_0330.jpeg"
 
 export const DeleteOwners =({currentUser}) => {
 
@@ -25,7 +26,8 @@ export const DeleteOwners =({currentUser}) => {
             </section>
         <form className="form">
             <h2>Account Delete:</h2>
-            {currentUser.name}
+            {currentUser.fullName}
+            {/* <img className="app-logo" src={catImage} alt="Good Kitty" /> */}
         <div>
         <button className="form-btn" onClick={handleDelete} >Delete this Owner Account?</button>
         </div>

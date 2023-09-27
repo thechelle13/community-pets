@@ -37,7 +37,7 @@ export const createNewPet = (newPet) => {
     return fetch (`http://localhost:8088/pets/${pets}`, {
       method: "DELETE"
     })
-   
+  
   }
  
 
