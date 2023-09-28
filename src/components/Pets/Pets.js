@@ -4,7 +4,6 @@ import "./Pets.css";
 import { useNavigate } from "react-router-dom";
 import { getAllPetTypes } from "../../services/PetTypeService";
 
-
 export const Pets = ({ currentUser }) => {
     const [currentUserPets, setCurrentUserPets] = useState([]);
     const [selectedPet, setSelectedPet] = useState(null);
@@ -59,41 +58,41 @@ export const Pets = ({ currentUser }) => {
     return (
     <div className="welcome-container">
         <section className="pet">
-        <h1 className="new">
-            <span>Community Pets</span>
-        </h1>
+            <h1 className="new">
+                <span>Community Pets</span>
+            </h1>
         </section>
+
         <form className="form">
-        <section className="form-group">
-            <h2>My Pets</h2>
-            {currentUserPets.map((pet) => (
-            <div className="pet" key={pet.id}>
-                <input
-                type="radio"
-                name="selectedPet"
-                value={pet.id}
-                checked={selectedPet === pet.id}
-                onChange={() => handlePetSelect(pet.id)}
-                />
-                <p>Name: {pet.name}</p>
-                <p>Pet Type: {getPetTypeName(pet.petTypeId)}</p> 
-                <p>Description: {pet.description}</p>
-            </div>
-        ))}
-        </section>
-        <section className="button-container">
-        <button className="form-btn" onClick={() => handleSave(selectedPet)}>
-            Update
-        </button>
-        <button className="form-btn" onClick={() => handleDelete(selectedPet)}>
-            Delete
-        </button>
-        <button className="form-btn" onClick={handleAddPet}>
-            Add Pet
-        </button>
-        </section>
-    </form>
-    
+                <section className="form-group">
+                    <h2>My Pets</h2>
+                    {currentUserPets.map((pet) => (
+                    <div className="pet" key={pet.id}>
+                        <input
+                        type="radio"
+                        name="selectedPet"
+                        value={pet.id}
+                        checked={selectedPet === pet.id}
+                        onChange={() => handlePetSelect(pet.id)}
+                        />
+                        <p>Name: {pet.name}</p>
+                        <p>Pet Type: {getPetTypeName(pet.petTypeId)}</p> 
+                        <p>Description: {pet.description}</p>
+                    </div>
+                ))}
+                </section>
+                <section className="button-container">
+                <button className="form-btn" onClick={() => handleSave(selectedPet)}>
+                    Update
+                </button>
+                <button className="form-btn" onClick={() => handleDelete(selectedPet)}>
+                    Delete
+                </button>
+                <button className="form-btn" onClick={handleAddPet}>
+                    Add Pet
+                </button>
+                </section>
+        </form>
     </div>
 );
 };

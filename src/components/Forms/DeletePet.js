@@ -10,6 +10,7 @@ export const DeletePet = ({ currentUser }) => {
     useEffect(() => {   
     getPetById(currentUser.petId).then((pet) => {
         setSelectedDelPet(pet);
+        console.log("Pet to Delete",pet)
     });
     }, [currentUser.petId]);
 

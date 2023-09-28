@@ -5,7 +5,7 @@ import { useNavigate, useParams} from "react-router-dom"
 import { getAllPets, petEdited } from "../../services/PetService"
 
 export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
-    const [currentUserPets, setCurrentUserPets] = useState([])
+   
     const [editPet, setEditPet] = useState([selectedPet]);
     const [type, setType] = useState([])
     const Navigate = useNavigate()
@@ -15,8 +15,9 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
         const copy = { ...editPet }
         copy[evt.target.id] = evt.target.value
         setEditPet(copy)
+        console.log("pet to edit",copy)
     }
-    
+
     const handleSave = (event) => {
         event.preventDefault()
 
@@ -38,15 +39,15 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
         getAllPets().then((petArray) =>{
             const filteredPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);       
         // Set the filtered pets in the state
-        setCurrentUserPets(filteredPets);
-        //console.log("Pet Set", filteredPets)
+        setSelectedPet(filteredPets);
+        console.log("Pet Set", filteredPets)
         ;
     });
-}, [currentUser.id]); 
+}, [currentUser.id, selectedPet.id, setSelectedPet]); 
 
-    useEffect(()=> {
-    setSelectedPet(null)
-    },[currentUserPets])
+    // useEffect(()=> {
+    // setSelectedPet(null)
+    // },[currentUserPets])
     
     useEffect(() => {
         getAllPetTypes().then((typeArray)=>{
@@ -65,28 +66,27 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
             </section>
         <form className="form">
             <h2>Pet Update:</h2>
-            
-                <div className="pet" >
-                <div>Selected Pet Info:  
-            
-            </div>
+    
                 
-                
-                </div>
+            {/* {selectedPet.map((pet) => {
+                return (
+                    <div key={pet.id} value={pet.id}> </div>
+                )
+            })} */}
             
             <fieldset>
             <div className="form-group">
             <label htmlFor="name" >Name:</label>
-                <input
+            <input
+                onChange={handleInputChange}
                 type="text"
                 id="name"
-                name={editPet.name}
                 className="form-control"
-                placeholder="Enter the name of your pet."
-                onChange={handleInputChange}
+                placeholder="Enter your pet's name"
                 required
                 autoFocus
-                />
+                value={editPet.name} 
+            />
             </div>
             </fieldset>        
             <fieldset>
@@ -110,7 +110,7 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
             <select
             name={editPet.petType}
             
-            value={selectedPet}         
+            //value={selectedPet.petType}         
             onChange={(event) => {
             const petCopy = { ...editPet }
             petCopy.petType = parseInt(event.target.value)

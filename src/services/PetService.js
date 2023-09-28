@@ -28,28 +28,47 @@ export const createNewPet = (newPet) => {
 
 
 // PUT 404 not found - EditPets
-  export const petEdited = (editedPet) => {
-    return fetch(`http://localhost:8088/pets/${editedPet.id}`, {
+  export const petEdited = (pets) => {
+    return fetch(`http://localhost:8088/pets/${pets.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editedPet),
+      body: JSON.stringify(pets),
     }).then((res) => res.json());
   }
+// working petOwner edit function
+  // export const userEdited = (petOwners) => {
+  //   return fetch(`http://localhost:8088/petOwners/${petOwners.id}`, {
+  //     method: "PUT",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify(petOwners),
+  //   }).then((res) => res.json())
+  // }
   
   // not found pets/undefined  -DeletePet
-  export const petDelete =  (petId) => {
-    return fetch (`http://localhost:8088/pets/${petId}`, {
+  export const petDelete =  (id) => {
+    return fetch (`http://localhost:8088/pets/${id}`, {
       method: "DELETE"
     })
   
   }
+// working petOwner Delete function
+// export const userDelete =  (petOwnerId) => {
+//   return fetch (`http://localhost:8088/petOwners/${petOwnerId}`, {
+//     method: "DELETE"
+//   })
+  
+// }
+
+
 // undefined ? 404 not found
-export const getPetById = (petId) => {
-  return fetch(`http://localhost:8088/pets/${petId}`).then((res) => res.json());
+export const getPetById = (id) => {
+  return fetch(`http://localhost:8088/pets?id=${id}`).then((res) => res.json());
 }
     
 
-
+// http://localhost:8088/pets?petOwnerId=${petOwnerId} 
 

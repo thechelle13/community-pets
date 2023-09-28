@@ -5,6 +5,7 @@ import { userEdited } from "../../services/UserService";
 
 export const EditOwners = ({ currentUser, setCurrentUser }) => {
     const [owner, setOwner] = useState({ ...currentUser });
+    
     const Navigate = useNavigate();
 
     const handleInputChange = (evt) => {
