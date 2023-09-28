@@ -1,7 +1,8 @@
-import React, { useState } from "react"
+import { useState } from "react"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
-// import { PetPostList } from "./PetPostList"
+import { useNavigate } from "react-router-dom";
+
 
 export const PetPosts = ({ currentUser}) => {
     const [petPost, setPetPost] = useState({
@@ -11,14 +12,15 @@ export const PetPosts = ({ currentUser}) => {
     sitStartDate: new Date(),
     sitEndDate: new Date()
     });
-
+    const Navigate = useNavigate()
+    
     const [petPostsList, setPetPostsList] = useState([]) 
 
     const handleDescriptionChange = (event) => {
     const updatedPetPost = { ...petPost, description: event.target.value }
     setPetPost(updatedPetPost)
     };
-
+    
     const handleSubmit = (event) => {
     event.preventDefault()
 
@@ -32,12 +34,12 @@ export const PetPosts = ({ currentUser}) => {
     
     setPetPostsList([...petPostsList, petPostData])
     
-    // setPetPost({ description: "", 
-    //             currentUser: currentUser.id, 
+    setPetPost({ description: "", 
+                currentUser: currentUser.id, 
      
-    //             sitStartDate: new Date(), 
-    //             sitEndDate: new Date() 
-    //         })  
+                sitStartDate: new Date(), 
+                sitEndDate: new Date() 
+            })  
     };
 
     return (
@@ -91,7 +93,7 @@ export const PetPosts = ({ currentUser}) => {
                     required
                 />
                 </div>
-                <button className="btn" type="submit">
+                <button className="btn" type="submit" onClick={handleSubmit}>
                     Post</button>
                     </section>
             </form>
@@ -112,3 +114,5 @@ export const PetPosts = ({ currentUser}) => {
     </div>
 )
 }
+
+

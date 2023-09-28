@@ -44,8 +44,12 @@ textarea {
 }
 
 body {
-  background-color: var(--appBackground);
-  margin: 0;
+  background-color: rgb(176, 243, 176);
+  
+  background-repeat: repeat; /* Repeat the image to cover the entire body */
+  background-size: auto; /* Set the size of the background image */
+  font-family: Arial, sans-serif; /* Set a font for the body content */
+  /* Other body styles go here */
 }
 
 h1,
@@ -122,4 +126,3 @@ button {
   font-weight: bold;
   text-shadow: 2px 3px 4px lightslategray;
 }
-

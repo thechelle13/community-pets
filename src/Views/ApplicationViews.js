@@ -64,7 +64,7 @@ export const ApplicationViews = () => {
       <Route path="EditOwners" element={<EditOwners currentUser={currentUser} setCurrentUser={setCurrentUser}/> }/>
       <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
       <Route path="Pets" element={<Pets currentUser={currentUser} currentUserPets={currentUserPets}/>}/>
-        <Route path="EditPets" element={<EditPet currentUser={currentUser} setSelectedPet={setSelectedPet} selectedPet={selectedPet}/>}/>
+        <Route path="EditPets" element={<EditPet currentUser={currentUser}  setSelectedPet={setSelectedPet} selectedPet={selectedPet}/>}/>
         <Route path="DeletePet" element={<DeletePet currentUser={currentUser} currentUserPets={currentUserPets}  setCurrentUser={setCurrentUser} />}/>
         <Route path="AddPets" element={<AddPets currentUser={currentUser}/>}/>
         <Route path="PetPosts" element={<PetPosts currentUser={currentUser} setCurrentUser={setCurrentUser} />}/>

@@ -26,7 +26,7 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
             name: editPet.name,
             petOwnerId: parseInt(editPet.petOwnerId),
             description: editPet.description,
-            petTypeId: parseInt(editPet.petType)
+            petTypeId: parseInt(editPet.petTypeId)
         }
         petEdited(updatedPet)
         .then((res) => {
@@ -85,7 +85,7 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
                 placeholder="Enter your pet's name"
                 required
                 autoFocus
-                value={editPet.name} 
+                name={editPet.name}
             />
             </div>
             </fieldset>        
@@ -108,25 +108,24 @@ export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
             <fieldset>
             <div htmlFor="petType"> Pet Type:</div>
             <select
-            name={editPet.petType}
-            
-            //value={selectedPet.petType}         
+            name="petType"
+            value={editPet.petTypeId}         
             onChange={(event) => {
             const petCopy = { ...editPet }
-            petCopy.petType = parseInt(event.target.value)
+            petCopy.petTypeId = parseInt(event.target.value)
             setEditPet(petCopy)
             }}
             required
             autoFocus
             >
             <option value="petType">Please select pet type</option>
-            {type.map((typeObj) => {
-            return (
-                <option key={typeObj.id} value={typeObj.id}>
-                {typeObj.type}
-                </option>
-            )
-            })}
+                {type.map((typeObj) => {
+                return (
+                    <option key={typeObj.id} value={typeObj.id}>
+                        {typeObj.type}
+                    </option>
+                )
+                })}
         </select>
             </fieldset>
             <section>

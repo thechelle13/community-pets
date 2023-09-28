@@ -1,10 +1,19 @@
-import React, { useState} from "react";
+import React, { useEffect, useState} from "react";
 //import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
+import { getAllPetPosts } from "../../services/PetPostService";
 
 
 export const PetPostList = ({ petPosts, currentUser }) => {
     const [searchQuery, setSearchQuery] = useState("");
+    const [allPosts, setAllPosts] = useState([])
+
+    useEffect(() => {
+      getAllPetPosts().then((postArray)=>{
+          setAllPosts(postArray)
+         // console.log("Type set.")          
+      })
+  }, [allPosts])
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);

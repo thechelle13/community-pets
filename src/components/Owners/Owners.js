@@ -31,7 +31,7 @@ const handleSave = (event) => {
       <form className="form"> 
         <section className="form-group">
             <h2>My Details:</h2>
-          <article className="owner">
+          <section className="owner">
                     
               <div >User #: {currentUser.id}
               </div>
@@ -47,7 +47,7 @@ const handleSave = (event) => {
               <button className="form-btn" type="submit" 
                 onClick={handleDelete}
                 >Delete</button>
-          </article>
+          </section>
         </section> 
       </form>
     </div> 

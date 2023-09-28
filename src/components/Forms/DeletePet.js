@@ -1,24 +1,35 @@
 import { useNavigate } from "react-router-dom";
-import { petDelete, getPetById } from "../../services/PetService";
+import { petDelete, getPetById, getAllPets } from "../../services/PetService";
 import "./Addpets.css";
 import { useEffect, useState } from "react";
 
-export const DeletePet = ({ currentUser }) => {
-    const [selectedDelPet, setSelectedDelPet] = useState([]); 
+export const DeletePet = ({ currentUser, setSelectedPet, selectedPet }) => {
+    const [delPet, setDelPet] = useState([]); 
     const Navigate = useNavigate();
 
     useEffect(() => {   
-    getPetById(currentUser.petId).then((pet) => {
-        setSelectedDelPet(pet);
-        console.log("Pet to Delete",pet)
+    getPetById(selectedPet).then((pet) => {
+        setDelPet(pet);
+        console.log("Pet to Delete", pet)
     });
-    }, [currentUser.petId]);
+    }, [selectedPet]);
+
+//     useEffect( () => {
+//         getAllPets().then((petArray) =>{
+//             const filteredPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);       
+//         // Set the filtered pets in the state
+//         setSelectedPet(filteredPets);
+//         console.log("Pet Set", filteredPets)
+//         ;
+//     });
+// }, [currentUser.id, selectedPet.id, setSelectedPet]); 
+
 
     const handleDelete = (event) => {
     event.preventDefault();
 
     const delPet = {
-        id: selectedDelPet.id, 
+        id: selectedPet, 
     };
     
     petDelete(delPet.id).then(() => {
@@ -36,13 +47,13 @@ export const DeletePet = ({ currentUser }) => {
         <form className="form">
         <h2>Pet Delete:</h2> 
             
-        {selectedDelPet && (
+    
             <div>
-            <p>Name: {selectedDelPet.name}</p>
-            <p>Pet Type: {selectedDelPet.petType}</p>
-            <p>Description: {selectedDelPet.description}</p>
+            <p>Name: {selectedPet}</p>
+            <p>Pet Type: {selectedPet}</p>
+            <p>Description: {selectedPet}</p>
             </div>
-        )}
+         
         <div>
             <button className="form-btn" onClick={handleDelete}>
             Delete this Pet?
@@ -52,3 +63,4 @@ export const DeletePet = ({ currentUser }) => {
     </div>
 );
 };
+

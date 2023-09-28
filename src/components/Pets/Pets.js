@@ -66,8 +66,9 @@ export const Pets = ({ currentUser }) => {
         <form className="form">
                 <section className="form-group">
                     <h2>My Pets</h2>
+                    
                     {currentUserPets.map((pet) => (
-                    <div className="pet" key={pet.id}>
+                    <div className="pet-radio" key={pet.id}>
                         <input
                         type="radio"
                         name="selectedPet"
@@ -75,11 +76,14 @@ export const Pets = ({ currentUser }) => {
                         checked={selectedPet === pet.id}
                         onChange={() => handlePetSelect(pet.id)}
                         />
+                        <section className="pet">
                         <p>Name: {pet.name}</p>
                         <p>Pet Type: {getPetTypeName(pet.petTypeId)}</p> 
                         <p>Description: {pet.description}</p>
+                        </section>
                     </div>
                 ))}
+               
                 </section>
                 <section className="button-container">
                 <button className="form-btn" onClick={() => handleSave(selectedPet)}>

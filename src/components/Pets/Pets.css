@@ -3,6 +3,23 @@
     flex-direction: column;
   }
 
+  .pet-container {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    margin-bottom: 10px; /* Add spacing between pet containers */
+  }
+  
+  .pet-radio {
+    flex: 0 0 auto; /* Don't grow or shrink, fixed width */
+    margin-right: 10px; /* Add spacing between the radio button and pet info */
+  }
+  
+  .pet-info {
+    flex: 1; /* Grow and take available space */
+  }
+  
+
+  
   .pets-container {
     margin: 1rem 5rem 0rem 5rem;
   }
