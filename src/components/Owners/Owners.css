@@ -46,11 +46,11 @@
     text-align: center;
     display: flex;
     flex-direction: column;
-    color: var(--primary);
+    color:  rgb(72, 0, 255);
   }
   .btn {
     align-self: flex-end;
-    color: var(--primary);
+    color:  rgb(72, 0, 255);
     border: 1px solid var(--outline);
 
   }

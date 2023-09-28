@@ -4,6 +4,7 @@ import "./Pets.css";
 import { useNavigate } from "react-router-dom";
 import { getAllPetTypes } from "../../services/PetTypeService";
 
+
 export const Pets = ({ currentUser }) => {
     const [currentUserPets, setCurrentUserPets] = useState([]);
     const [selectedPet, setSelectedPet] = useState(null);
@@ -28,13 +29,21 @@ export const Pets = ({ currentUser }) => {
     };
 
     const handleSave = (petId) => {
-    Navigate(`/EditPets`)
-    //console.log("Update pet with ID:", petId);
+        if (selectedPet !== null) {
+        Navigate(`/EditPets`)
+        //console.log("Update pet with ID:", petId);
+        }   else {
+        alert("Please select a pet before updating.");
+        }
     };
 
     const handleDelete = (petId) => {
-    Navigate(`/DeletePet`)
-    //console.log("Delete pet with ID:", petId);
+        if (selectedPet !== null) {
+            Navigate(`/DeletePet`);
+            //console.log("Delete pet with ID:", petId);
+        } else {
+            alert("Please select a pet before deleting.");
+        }
     };
 
     const handleAddPet = () => {
@@ -84,6 +93,7 @@ export const Pets = ({ currentUser }) => {
         </button>
         </section>
     </form>
+    
     </div>
 );
 };

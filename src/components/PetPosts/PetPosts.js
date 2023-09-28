@@ -1,69 +1,91 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css"
 
-export const PetPosts = ({ currentUser, currentUserPets }) => {
-  const [petPost, setPetPost] = useState({
+export const PetPosts = ({ currentUser}) => {
+    const [petPost, setPetPost] = useState({
     description: "",
-    selectedPetId: "",
-  });
+    currentUser: currentUser.id,
+    //date: new Date().toISOString(),
+    sitStartDate: new Date(),
+    sitEndDate: new Date()
+    });
 
-  const [postedPet, setPostedPet] = useState(null);
-
-  const handleDescriptionChange = (event) => {
+    const handleDescriptionChange = (event) => {
     const updatedPetPost = { ...petPost, description: event.target.value };
     setPetPost(updatedPetPost);
-  };
-
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    // Create a pet post object with the description, pet details, and user information
-    const petPostData = {
-      description: petPost.description,
-      pet: postedPet,
-      user: currentUser,
     };
 
-    // Send the pet post data to your API or perform any necessary actions
-    console.log("Pet Post Data:", petPostData);
+    const handleSubmit = (event) => {
+    event.preventDefault();
 
-    // Clear the input field
-    setPetPost({ description: "" });
-    setPostedPet(null);
-  };
+    const petPostData = {
+        description: petPost.description,
+    //   pet: postedPet,
+        user: currentUser,
+    };
+    //console.log("Pet Post Data:", petPostData);
 
-  return (
+    setPetPost({ description: "", currentUser: currentUser.id, 
+    //date: new Date(), 
+    sitStartDate: new Date(), sitEndDate: new Date() })  
+};
+
+    return (
     <div className="welcome-container">
-      <section className="pet">
+        <section className="pet">
         <h2 className="new">
-          <span> Community Pets </span>
-          <span>Pet Posting Exchange</span>
+            <span> Community Pets </span>
+            <span>Pet Posting Exchange</span>
         </h2>
-      </section>
-      <section className="pet">
+        </section>
+        <section className="pet">
         <div> Pet Post Exchange </div>
-      </section>
+        </section>
 
-      <section className="pet">
+        <section className="pet">
         <form onSubmit={handleSubmit}>
-          <h3>Create a Pet Post</h3>
-
-          {/* Input field for the description */}
-          <div className="form-group">
-            <label htmlFor="description">Description:</label>
+            <h3>Create a Pet Post</h3>
+            <section>
+            <div>{currentUser.fullName}</div>
+            <div>{currentUser.city}</div>
+            <div>{currentUser.email}</div>
+            </section>        
+            <div className="form-group">
+            <label htmlFor="description">Post Description:</label>
             <input
-              type="text"
-              id="description"
-              value={petPost.description}
-              onChange={handleDescriptionChange}
-              required
+                type="text"
+                id="description"
+                value={petPost.description}
+                onChange={handleDescriptionChange}
+                required
             />
-          </div>
-
-
-          <button className="btn" type="submit">Post</button>
+            {/* <label htmlFor="date">Post Date:</label>
+            <input
+            type="text"
+            id="date"
+            value={petPost.date}
+            onChange={handleDescriptionChange}
+            required
+            /> */}
+            <label htmlFor="sitStartDate">Start Date of Sit:</label>
+                <DatePicker
+                id="sitStartDate"
+                selected={petPost.sitStartDate}
+                onChange={(date) => setPetPost({ ...petPost, sitStartDate: date })}
+                required
+            />
+            <label htmlFor="sitEndDate">End Date of Sit:</label>
+                <DatePicker
+                id="sitEndDate"
+                selected={petPost.sitEndDate}
+                onChange={(date) => setPetPost({ ...petPost, sitEndDate: date })}
+                required
+            />
+            </div>
+            <button className="btn" type="submit">Post</button>
         </form>
-      </section>
+        </section>
     </div>
-  );
+);
 };

@@ -14,7 +14,9 @@ import { PetPosts } from "../components/PetPosts/PetPosts"
 export const ApplicationViews = () => {
 
     const [currentUser, setCurrentUser] = useState({})
+    
     const [currentUserPets, setCurrentUserPets] = useState({})
+
     const [selectedPet, setSelectedPet] = useState({})
   
   useEffect(() => {
@@ -22,16 +24,26 @@ export const ApplicationViews = () => {
     const petUserObject = JSON.parse(localPetUser)
     setCurrentUser(petUserObject)
   }, [] )
+
+
   useEffect(() => {
-    const localPetUserPets = localStorage.getItem("pet_user")
-    const petUserPetObject = JSON.parse(localPetUserPets)
-    setCurrentUserPets(petUserPetObject)
-  }, [] )
-  useEffect(() => {
-    const localPetUserSelectedPets = localStorage.getItem("pet_user")
-    const petUserPetSelectedObject = JSON.parse(localPetUserSelectedPets)
-    setCurrentUserPets(petUserPetSelectedObject)
-  }, [] )
+    const fetchUserPets = async (petOwnerId) => {
+      try {
+        const response = await fetch(`http://localhost:8088/pets?petOwnerId=${petOwnerId}`);
+        if (response.ok) {
+          const userPetsData = await response.json();
+          setCurrentUserPets(userPetsData);
+        } else {
+          console.error("Failed to fetch user's pets");
+        }
+      } catch (error) {
+        console.error("Error fetching user's pets:", error);
+      }
+    };
+
+    fetchUserPets();
+  }, [currentUser.id] )
+  
 
     return (
 
@@ -50,11 +62,11 @@ export const ApplicationViews = () => {
       <Route path="Owners" element={<Owners currentUser={currentUser}/> }/>
       <Route path="EditOwners" element={<EditOwners currentUser={currentUser} setCurrentUser={setCurrentUser}/> }/>
       <Route path="DeleteOwners" element={<DeleteOwners currentUser={currentUser}/> }/>
-      <Route path="Pets" element={<Pets currentUser={currentUser}/>}/>
+      <Route path="Pets" element={<Pets currentUser={currentUser} currentUserPets={currentUserPets}/>}/>
         <Route path="EditPets" element={<EditPet currentUser={currentUser} setCurrentUser={setCurrentUser} currentUserPets={currentUserPets} setSelectedPet={setSelectedPet}/>}/>
         <Route path="DeletePet" element={<DeletePet currentUser={currentUser} currentUserPets={currentUserPets}  setCurrentUser={setCurrentUser} />}/>
         <Route path="AddPets" element={<AddPets currentUser={currentUser}/>}/>
-        <Route path="PetPosts" element={<PetPosts currentUser={currentUser} setCurrentUser={setCurrentUser} currentUserPets={currentUserPets}/>}/>
+        <Route path="PetPosts" element={<PetPosts currentUser={currentUser} setCurrentUser={setCurrentUser} />}/>
       </Route>
   </Routes> 
 )}

@@ -4,17 +4,19 @@ import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate, useParams} from "react-router-dom"
 import { getAllPets, petEdited } from "../../services/PetService"
 
-export const EditPet = ({currentUser,setSelectedPet }) => {
+export const EditPet = ({currentUser,setSelectedPet,selectedPet }) => {
     const [currentUserPets, setCurrentUserPets] = useState([])
-    //const [selectedPet, setSelectedPet] = useState(null);
+    const [editPet, setEditPet] = useState([selectedPet]);
     const [type, setType] = useState([])
     const Navigate = useNavigate()
     const {petId} = useParams
+    
     const handleInputChange = (evt) => {
         const copy = { ...editPet }
         copy[evt.target.id] = evt.target.value
         setEditPet(copy)
     }
+    
     const handleSave = (event) => {
         event.preventDefault()
 
@@ -27,17 +29,10 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
         }
         petEdited(updatedPet)
         .then((res) => {
-            setCurrentUserPets(res)
+            setEditPet(res)
             Navigate(`/Pets`)
         })
     }
-    const [editPet, setEditPet] = useState({
-        ...currentUserPets
-    })
-  
-    
-
-    
 
     useEffect( () => {
         getAllPets().then((petArray) =>{
@@ -60,9 +55,6 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
         })
     }, [])
 
-    
-
-    
 
     return (
         <div className="welcome-container">
@@ -74,20 +66,13 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
         <form className="form">
             <h2>Pet Update:</h2>
             
-                {/* <div className="pet" >
+                <div className="pet" >
                 <div>Selected Pet Info:  
-                    {selectedPet && (
-  <div className="pet">
-    <p>Name: {selectedPet.name}</p>
-    <p>Pet Type: {getAllPetTypes(selectedPet.petTypeId)}</p>
-    <p>Description: {selectedPet.description}</p>
-  </div>
-)}
-
+            
             </div>
                 
                 
-                </div> */}
+                </div>
             
             <fieldset>
             <div className="form-group">
@@ -95,7 +80,7 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
                 <input
                 type="text"
                 id="name"
-                
+                name={editPet.name}
                 className="form-control"
                 placeholder="Enter the name of your pet."
                 onChange={handleInputChange}
@@ -111,7 +96,7 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
                 type="text"
                 
                 id="description"
-                
+                name={editPet.description}
                 className="form-control"
                 placeholder="Description of your pet."
                 onChange={handleInputChange}
@@ -123,9 +108,9 @@ export const EditPet = ({currentUser,setSelectedPet }) => {
             <fieldset>
             <div htmlFor="petType"> Pet Type:</div>
             <select
-            name="petType"
+            name={editPet.petType}
             
-            value={editPet.petType}         
+            value={selectedPet}         
             onChange={(event) => {
             const petCopy = { ...editPet }
             petCopy.petType = parseInt(event.target.value)

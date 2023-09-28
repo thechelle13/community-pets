@@ -4,7 +4,7 @@ import "./Addpets.css"
 import { getAllPetTypes } from "../../services/PetTypeService"
 import { useNavigate} from "react-router-dom"
 
-export const AddPets = ({currentUser}) => {
+export const AddPets = ({currentUser, currentUserPets}) => {
     const [type, setType] = useState([])
     const [newPet, setNewPet] = useState({
         name:"", 
@@ -41,7 +41,6 @@ export const AddPets = ({currentUser}) => {
             Navigate(`/Pets`)
         })
     }
-    
     return (
         <div className="welcome-container">
         <section className="pet">
