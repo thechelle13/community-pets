@@ -3,8 +3,8 @@ export const getAllPetPosts = () => {
     res.json())
 }
 
-export const getPetPostsById = (petPosts) => {
-    return fetch(`http://localhost:8088/petPosts?petPostId=${petPosts.id}`).then((res) =>
+export const getPetPostsById = (id) => {
+    return fetch(`http://localhost:8088/petPosts?petPostId=${id}`).then((res) =>
     res.json())
 }
 
