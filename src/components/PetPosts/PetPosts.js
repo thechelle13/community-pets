@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useNavigate } from "react-router-dom";
-import { createPost, getPetPostsById, getPetPostsByUserId } from "../../services/PetPostService";
+import { createPost, getPetPostsById} from "../../services/PetPostService";
 
 export const PetPosts = ({ currentUser }) => {
   const [petPost, setPetPost] = useState({

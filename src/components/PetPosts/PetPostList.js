@@ -70,6 +70,16 @@ export const PetPostList = ({ petPosts, currentUser }) => {
                 <div>
                   <strong>Description:</strong> {post.description}
                 </div>
+                <div>
+                  <strong>Sit Start Time:</strong> 
+                  {post.sitStartDate}
+                  {/* {(post.sitStartDate).toLocaleDateString()} */}
+                </div>
+                <div>
+                  <strong>Sit End Time:</strong>
+                   {/* {(post.sitEndDate).toLocaleDateString()} */}
+                    {post.sitEndDate}
+                </div>
               </div>
             </div>
           ))
