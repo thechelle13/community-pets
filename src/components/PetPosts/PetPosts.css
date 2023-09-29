@@ -1,0 +1,15 @@
+.pet {
+    background-color: var(--white);
+    border: 1px solid var(--outline);
+    margin: 0.5rem 0;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+  }
+  form {
+    margin: 3rem 5rem;
+    border: 1px solid var(--outline);
+    border-radius: 10px;
+    padding: 1rem 0rem 0rem 1rem;
+    box-shadow: 1px 2px 5px lightgray;
+    background-color: var(--offWhite);
+  }

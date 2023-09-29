@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { petDelete, getPetById, getAllPets, getPetByPetOwnerId } from "../../services/PetService";
+import { petDelete, getPetByPetOwnerId } from "../../services/PetService";
 import "./Addpets.css";
 import { useEffect, useState } from "react";
 

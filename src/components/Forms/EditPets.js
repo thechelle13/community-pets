@@ -1,107 +1,105 @@
 import React, { useEffect, useState } from "react";
 import "./Addpets.css";
 import { getAllPetTypes } from "../../services/PetTypeService";
-import { useNavigate, useParams } from "react-router-dom";
-import { getAllPets, getPetByPetOwnerId, petEdited } from "../../services/PetService";
+import { useNavigate} from "react-router-dom";
+import { getAllPets, petEdited } from "../../services/PetService";
 
 export const EditPet = ({ currentUser }) => {
-  const [currentUserPets, setCurrentUserPets] = useState([]);
-  const [editPet, setEditPet] = useState({
-    id: "",
-    name: "",
-    petOwnerId: "",
-    description: "",
-    petTypeId: "",
-  });
-  const [type, setType] = useState([]);
+    const [currentUserPets, setCurrentUserPets] = useState([]);
+    const [editPet, setEditPet] = useState({
+            id: "",
+            name: "",
+            petOwnerId: "",
+            description: "",
+            petTypeId: "",
+            });
+    const [type, setType] = useState([]);
 
-  const Navigate = useNavigate();
-  const { petOwnerId } = useParams();
+    const Navigate = useNavigate();
+    //const { petOwnerId } = useParams();
 
-  useEffect(() => {
+    useEffect(() => {
     getAllPets().then((petArray) => {
-      const filteredPets = petArray.filter(
+        const filteredPets = petArray.filter(
         (pet) => pet.petOwnerId === currentUser.id
-      );
+        );
     
-      if (filteredPets.length > 0) {
+        if (filteredPets.length > 0) {
         setEditPet({
-          id: filteredPets[0].id,
-          name: filteredPets[0].name,
-          petOwnerId: filteredPets[0].petOwnerId,
-          description: filteredPets[0].description,
-          petTypeId: filteredPets[0].petTypeId,
+            id: filteredPets[0].id,
+            name: filteredPets[0].name,
+            petOwnerId: filteredPets[0].petOwnerId,
+            description: filteredPets[0].description,
+            petTypeId: filteredPets[0].petTypeId,
         });
-      }
-      setCurrentUserPets(filteredPets);
+        }
+        setCurrentUserPets(filteredPets);
     });
-  }, [currentUser.id]);
+}, [currentUser.id]);
 
-  useEffect(() => {
-    getAllPetTypes().then((typeArray) => {
-      setType(typeArray);
-    });
-  }, []);
+    useEffect(() => {
+        getAllPetTypes().then((typeArray) => {
+        setType(typeArray);
+        });
+    }, []);
 
-  const handleInputChange = (evt) => {
+    const handleInputChange = (evt) => {
     const { id, value } = evt.target;
 
     // Ensure that petOwnerId and petTypeId are integers
     const newValue = id === "petOwnerId" || id === "petTypeId" ? parseInt(value) : value;
 
     setEditPet((prevEditPet) => ({
-      ...prevEditPet,
-      [id]: newValue,
+        ...prevEditPet,
+        [id]: newValue,
     }));
-  };
+};
 
 
-  
-  const handleSave = (event) => {
+    const handleSave = (event) => {
     event.preventDefault();
-  
+
     // Ensure that petOwnerId and petTypeId are integers
     const updatedPet = {
-      id: editPet.id,
-      name: editPet.name,
-      petOwnerId: parseInt(editPet.petOwnerId), // Ensure this is a valid integer
-      description: editPet.description,
-      petTypeId: parseInt(editPet.petTypeId), // Ensure this is a valid integer
+        id: editPet.id,
+        name: editPet.name,
+        petOwnerId: parseInt(editPet.petOwnerId), // Ensure this is a valid integer
+        description: editPet.description,
+        petTypeId: parseInt(editPet.petTypeId), // Ensure this is a valid integer
     };
-  
-    petEdited(updatedPet).then((res) => {
-      setEditPet(res);
-      Navigate(`/Pets`);
-    });
-  };
-  
 
-  return (
+    petEdited(updatedPet).then((res) => {
+        setEditPet(res);
+        Navigate(`/Pets`);
+    });
+};
+
+
+    return (
     <div className="welcome-container">
-      <section className="pet">
-        <h1 className="new">
-          <span>Community Pets</span>
-        </h1>
-      </section>
-      <div className="form">
-        <h2>Pet Update:</h2>
-        <div>Current Info: </div>
-        {/* <div>Pet Name: {editPet.name}</div>
-        <div>Email: {currentUser.email}</div>
-        <div>City: {currentUser.city}</div> */}
+        <section className="pet">
+            <h1 className="new">
+            <span>Community Pets</span>
+            </h1>
+        </section>
+        <div className="pet">
+            <h2>Pet Update:</h2>
+            <div>Current Info: </div>
+    
 
         <fieldset>
-          <div className="form-group">
+            <div className="form-group">
             <label htmlFor="name">Name:</label>
             <input
-              onChange={handleInputChange}
-              type="text"
-              id="name"
-              className="form-control"
-              placeholder="Enter your pet's name"
-              required
-              autoFocus
-              value={editPet.name}
+                onChange={handleInputChange}
+                type="text"
+                id="name"
+                className="form-control"
+                placeholder="Enter your pet's name"
+                required
+                autoFocus
+                value={editPet.name}
+                autoComplete="off" 
             />
           </div>
         </fieldset>
@@ -117,6 +115,7 @@ export const EditPet = ({ currentUser }) => {
               required
               autoFocus
               value={editPet.description}
+              
             />
           </div>
         </fieldset>
@@ -134,6 +133,7 @@ export const EditPet = ({ currentUser }) => {
             }}
             required
             autoFocus
+            autoComplete="off" 
           >
             <option value="petType">Please select pet type</option>
             {type.map((typeObj) => {
