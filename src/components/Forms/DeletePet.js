@@ -1,35 +1,26 @@
 import { useNavigate } from "react-router-dom";
-import { petDelete, getPetById, getAllPets } from "../../services/PetService";
+import { petDelete, getPetById, getAllPets, getPetByPetOwnerId } from "../../services/PetService";
 import "./Addpets.css";
 import { useEffect, useState } from "react";
 
-export const DeletePet = ({ currentUser, setSelectedPet, selectedPet }) => {
+export const DeletePet = ({ currentUser }) => {
     const [delPet, setDelPet] = useState([]); 
     const Navigate = useNavigate();
 
     useEffect(() => {   
-    getPetById(selectedPet).then((pet) => {
+    getPetByPetOwnerId(delPet).then((pet) => {
         setDelPet(pet);
-        console.log("Pet to Delete", pet)
+        console.log("Pet to Delete", delPet)
     });
-    }, [selectedPet]);
+    }, []);
 
-//     useEffect( () => {
-//         getAllPets().then((petArray) =>{
-//             const filteredPets = petArray.filter((pet) => pet.petOwnerId === currentUser.id);       
-//         // Set the filtered pets in the state
-//         setSelectedPet(filteredPets);
-//         console.log("Pet Set", filteredPets)
-//         ;
-//     });
-// }, [currentUser.id, selectedPet.id, setSelectedPet]); 
 
 
     const handleDelete = (event) => {
     event.preventDefault();
 
-    const delPet = {
-        id: selectedPet, 
+    const petDel = {
+        id: delPet, 
     };
     
     petDelete(delPet.id).then(() => {
@@ -49,9 +40,9 @@ export const DeletePet = ({ currentUser, setSelectedPet, selectedPet }) => {
             
     
             <div>
-            <p>Name: {selectedPet}</p>
-            <p>Pet Type: {selectedPet}</p>
-            <p>Description: {selectedPet}</p>
+            <p>Name: {delPet.name}</p>
+            <p>Pet Type: {delPet.petType}</p>
+            <p>Description: {delPet.description}</p>
             </div>
          
         <div>

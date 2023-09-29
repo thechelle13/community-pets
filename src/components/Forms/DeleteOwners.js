@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import "./Addpets.css"
 import { userDelete } from "../../services/UserService"
-//import dogImage from "../assets/IMG_1440.jpeg"
 import catImage from "../assets/IMG_0330.jpeg"
 
 export const DeleteOwners =({currentUser}) => {

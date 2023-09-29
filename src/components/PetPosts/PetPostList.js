@@ -13,7 +13,7 @@ export const PetPostList = ({ petPosts, currentUser }) => {
           setAllPosts(postArray)
          // console.log("Type set.")          
       })
-  }, [allPosts])
+  }, [petPosts])
 
     const handleSearchChange = (event) => {
         setSearchQuery(event.target.value);

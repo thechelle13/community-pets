@@ -15,66 +15,54 @@ export const createNewPet = (newPet) => {
     }).then((res) => res.json())
   }
 
-  // fetch not found 404 on PUT /undefined
-  // export const petEdited = (pets) => {
-  //   return fetch(`http://localhost:8088/pets/${pets.id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(pets),
-  //   }).then((res) => res.json())
-  // }
-
-
-// PUT 404 not found - EditPets
-  // export const petEdited = (pets) => {
-  //   return fetch(`http://localhost:8088/pets/${pets.id}`, {
-  //     method: "PUT",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify(pets),
-  //   }).then((res) => res.json());
-  // }
-
+  
 //
-  export const petEdited = (editPet) => {
-    return fetch(`http://localhost:8088/pets/${editPet}`, {
+  export const petEdited = (petId) => {
+    return fetch(`http://localhost:8088/pets/${petId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(editPet),
+      body: JSON.stringify(petId),
     })
     // .then((res) => res.json());
   };
   
-  // not found pets/undefined  -DeletePet
+  // working !!!!!!!
   export const petDelete =  (petId) => {
     return fetch (`http://localhost:8088/pets/${petId}`, {
       method: `DELETE`
     })
   
   }
-// working petOwner Delete function
-// export const userDelete =  (petOwnerId) => {
-//   return fetch (`http://localhost:8088/petOwners/${petOwnerId}`, {
-//     method: "DELETE"
-//   })
-  
-// }
 
 
 
-export const getPetById = (petId) => {
-  return fetch(`http://localhost:8088/pets/${petId}`)
+
+export const getPetByPetOwnerId = async (petOwnerId) => {
+  return fetch(`http://localhost:8088/pets?petOwnerId=${petOwnerId}`)
   .then((res) =>
     res.json()
   );
 };
 
+ // useEffect(() => {
+  //   const fetchUserPets = async (petOwnerId) => {
+  //     try {
+  //       const response = await fetch(`http://localhost:8088/pets?petOwnerId=${petOwnerId}`);
+  //       if (response.ok) {
+  //         const userPetsData = await response.json();
+  //         setCurrentUserPets(userPetsData);
+  //       } else {
+  //         console.error("Failed to fetch user's pets");
+  //       }
+  //     } catch (error) {
+  //       console.error("Error fetching user's pets:", error);
+  //     }
+  //   };
 
+  //   fetchUserPets();
+  // }, [currentUser.id] )
 
 
 // http://localhost:8088/pets?petOwnerId=${petOwnerId} 
