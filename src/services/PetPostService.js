@@ -10,10 +10,16 @@ export const getPetPostsById = (petPosts) => {
 
 export const createPost = (petOwnerId) => {
     return fetch("http://localhost:8088/petPosts?_expand=user", {
-      method: "POST",
-      headers: {
+        method: "POST",
+        headers: {
         "Content-Type": "application/json",
-      },
-      body: JSON.stringify(petOwnerId),
+        },
+        body: JSON.stringify(petOwnerId),
     }).then((res) => res.json())
-  }
+    }
+
+    export const getOwnerByEmail = (email) => {
+        return fetch(`http://localhost:8088/petOwners?email=${email}`).then((res) =>
+          res.json()
+        )
+      }

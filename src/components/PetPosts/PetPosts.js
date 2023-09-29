@@ -9,6 +9,7 @@ export const PetPosts = ({ currentUser}) => {
     const [petPost, setPetPost] = useState({
     description: "",
     petOwnerId: currentUser.id,
+    petPostEmail: currentUser.email,
     sitStartDate: new Date(),
     sitEndDate: new Date()
     });
@@ -31,6 +32,7 @@ export const PetPosts = ({ currentUser}) => {
             sitEndDate: petPost.sitEndDate,
             id: petPost.id,
             petOwnerId: currentUser.id,
+            petPostEmail: currentUser.email
         };
     
         // Update the petPostsList state with the new pet post data
@@ -82,6 +84,14 @@ export const PetPosts = ({ currentUser}) => {
                     type="text"
                     id="description"
                     value={petPost.description}
+                    onChange={handleInputChange}
+                    required
+                />
+                 <label htmlFor="email">Contact:</label>
+                <input
+                    type="text"
+                    id="email"
+                    value={petPost.petPostEmail}
                     onChange={handleInputChange}
                     required
                 />

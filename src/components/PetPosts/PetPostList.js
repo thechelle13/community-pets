@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import "./PetPosts.css"
 import "react-datepicker/dist/react-datepicker.css";
-import { getAllPetPosts } from "../../services/PetPostService";
-import { getUserById } from "../../services/UserService";
-// import DatePicker from "react-datepicker"
+import { getAllPetPosts} from "../../services/PetPostService";
+import { getUserByEmail } from "../../services/UserService";
 
 export const PetPostList = ({ petPosts, currentUser }) => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -12,7 +10,7 @@ export const PetPostList = ({ petPosts, currentUser }) => {
   useEffect(() => {
     getAllPetPosts().then((postArray) => {
       setAllPosts(postArray);
-     
+      // console.log("Type set.")
     });
   }, []);
 
@@ -26,14 +24,14 @@ export const PetPostList = ({ petPosts, currentUser }) => {
     return description.includes(query);
   });
 
-  const getOwnerEmail = async (petOwnerId) => {
+  const getUserEmail = async (petOwnerId) => {
     try {
-      const user = await getUserById(petOwnerId);
+      const user = await getUserByEmail(petOwnerId);
       if (user) {
         return user.email;
       }
     } catch (error) {
-      console.error("Error fetching owner email:", error);
+      // console.error("Error fetching owner email:", error);
     }
     return "Unknown";
   };
@@ -61,21 +59,18 @@ export const PetPostList = ({ petPosts, currentUser }) => {
           filteredPetPosts.map((post, index) => (
             <div key={index} className="post-container">
               <div className="owner">
-              <div>
-                <strong>Posted By:</strong> {post.petOwnerId}
+                <div>
+                  <strong>Posted By:</strong>{" "}
+                  {post.petOwnerId}
+                </div>
+                <div>
+                  <strong>Email:</strong>{" "}
+                  {post.petPostEmail}
+                </div>
+                <div>
+                  <strong>Description:</strong> {post.description}
+                </div>
               </div>
-              <div>
-                <strong>Description:</strong> {post.description}
-              </div>
-              </div>
-              {/* <div>
-                <strong>Start Date:</strong>{" "}
-                {post.sitStartDate.toLocaleDateString()}
-              </div>
-              <div>
-                <strong>End Date:</strong>{" "}
-                {post.sitEndDate.toLocaleDateString()}
-              </div> */}
             </div>
           ))
         ) : (
