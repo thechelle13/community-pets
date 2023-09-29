@@ -17,15 +17,15 @@ export const createNewPet = (newPet) => {
 
   
 //
-  export const petEdited = (petId) => {
-    return fetch(`http://localhost:8088/pets/${petId}`, {
+  export const petEdited = (pets) => {
+    return fetch(`http://localhost:8088/pets/${pets.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(petId),
+      body: JSON.stringify(pets),
     })
-    // .then((res) => res.json());
+     .then((res) => res.json());
   };
   
   // working !!!!!!!
